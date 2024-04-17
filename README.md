@@ -10,6 +10,7 @@ A proof of concept
 - cached_network_image
 - flutter_screenutil
 - http
+- rxdart
 
 ## Dev Dependencies used
 
