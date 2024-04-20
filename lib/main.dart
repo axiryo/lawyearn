@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/core/theme/bloc/theme_state.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:lawyearn/features/auth/presentation/pages/signup_page.dart';
+import 'package:lawyearn/features/auth/presentation/pages/signin_page.dart';
 import 'package:lawyearn/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator();
+  await setupLocator();
   runApp(const MainApp());
 }
 
@@ -31,11 +31,13 @@ class MainApp extends StatelessWidget {
         builder: (context, state) {
           return ScreenUtilInit(
             builder: (context, child) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Lawyearn',
-                theme: state.themeData,
-                home: const SignUpPage(),
+              return SafeArea(
+                child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Lawyearn',
+                  theme: state.themeData,
+                  home: const SignInPage(),
+                ),
               );
             },
           );

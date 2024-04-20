@@ -22,7 +22,7 @@ class DropFilterContainer extends StatelessWidget {
                   Border.all(color: Colors.black.withOpacity(0.2), width: 2.5),
               borderRadius: const BorderRadius.all(Radius.circular(50))),
           child: const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(4.0),
             child: Row(
               children: [
                 CircleAvatar(

@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 class AppPallete {
   // light colors
-  static const Color lightScaffoldColor = Color(0xFFFFFFFF);
-  static const Color lightHintColor = Color(0xFFbbc3cd);
-  static const Color lightBorderColor = Color(0xFFbbc3cd);
+  static const Color lightScaffoldColor = Color(0xFFF7F7F6);
+  static const Color lightHintColor = Color(0xFF707070);
+  static const Color lightBorderColor = Color(0xFFD6D6D6);
+  static const Color lightPrimaryColor = Color(0xFF070707);
+  static const Color lightTextFieldFillColor = Color(0xFFDEDEDF);
+  static const Color lightPrimaryButton = Color(0xFF070707);
+  static const Color lightDisabledPrimaryButton = Color(0xFF676766);
+  static const Color lightSecondaryButton = Colors.transparent;
 
   // dark colors
   static const Color darkScaffoldColor = Color(0xFF121212);

@@ -1,10 +1,22 @@
 part of 'auth_bloc.dart';
 
 @immutable
-sealed class AuthState {}
+sealed class AuthState {
+  const AuthState();
+}
 
 final class AuthInitial extends AuthState {}
 
-final class AuthNavigateToSignIn extends AuthState {}
+final class AuthSignUpWithEmailSuccess extends AuthState {
+  final Profile profile;
 
-final class AuthNavigateToSignUp extends AuthState {}
+  const AuthSignUpWithEmailSuccess({required this.profile});
+}
+
+final class AuthSignUpWithEmailLoading extends AuthState {}
+
+final class AuthSignUpWithEmailError extends AuthState {
+  final String message;
+
+  const AuthSignUpWithEmailError(this.message);
+}
