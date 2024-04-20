@@ -12,81 +12,11 @@ class AppTheme {
         borderRadius: BorderRadius.circular(8),
       );
 
-  static final darkThemeMode = ThemeData.dark().copyWith(
-    scaffoldBackgroundColor: AppPallete.darkScaffoldColor,
-    primaryColor: AppPallete.whiteColor,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppPallete.darkScaffoldColor,
-    ),
-    chipTheme: const ChipThemeData(
-      color: MaterialStatePropertyAll(
-        AppPallete.darkScaffoldColor,
-      ),
-      side: BorderSide.none,
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      hintStyle: const TextStyle(
-          fontWeight: FontWeight.normal, color: AppPallete.darkHintColor),
-      contentPadding: const EdgeInsets.all(16),
-      border: _lightBorder(),
-      enabledBorder: _lightBorder(),
-      focusedBorder: _lightBorder(AppPallete.accentColor),
-      errorBorder: _lightBorder(AppPallete.errorColor),
-    ),
-    textTheme: ThemeData.dark().textTheme.apply(
-          fontFamily: 'Rubik',
-        ),
+  static final darkThemeMode = ThemeData(
+    brightness: Brightness.dark,
+    fontFamily: 'Rubik',
   );
 
-  // static final lightThemeMode = ThemeData.light().copyWith(
-  //   scaffoldBackgroundColor: AppPallete.lightScaffoldColor,
-  //   primaryColor: AppPallete.lightPrimaryColor,
-  //   appBarTheme: const AppBarTheme(
-  //     backgroundColor: AppPallete.lightScaffoldColor,
-  //   ),
-  //   elevatedButtonTheme: ElevatedButtonThemeData(
-  //     style: ButtonStyle(
-  //       shadowColor:
-  //           const MaterialStatePropertyAll(AppPallete.transparentColor),
-  //       overlayColor: const MaterialStatePropertyAll(AppPallete.accentColor),
-  //       backgroundColor: MaterialStateProperty.resolveWith<Color>(
-  //         (Set<MaterialState> states) {
-  //           if (states.contains(MaterialState.disabled)) {
-  //             return AppPallete.lightDisabledPrimaryButton;
-  //           }
-  //           return AppPallete.lightPrimaryButton;
-  //         },
-  //       ),
-  //       foregroundColor:
-  //           const MaterialStatePropertyAll(AppPallete.lightScaffoldColor),
-  //       textStyle: const MaterialStatePropertyAll(
-  //         TextStyle(
-  //           fontWeight: FontWeight.bold,
-  //         ),
-  //       ),
-  //     ),
-  //   ),
-  //   chipTheme: const ChipThemeData(
-  //     color: MaterialStatePropertyAll(
-  //       AppPallete.lightScaffoldColor,
-  //     ),
-  //     side: BorderSide.none,
-  //   ),
-  // inputDecorationTheme: InputDecorationTheme(
-  //   fillColor: AppPallete.lightTextFieldFillColor,
-  //   filled: true,
-  //   hintStyle: const TextStyle(
-  //       fontWeight: FontWeight.normal, color: AppPallete.lightHintColor),
-  //   contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-  //   border: _lightBorder(),
-  //   enabledBorder: _lightBorder(),
-  //   focusedBorder: _lightBorder(AppPallete.accentColor, 2),
-  //   errorBorder: _lightBorder(AppPallete.errorColor),
-  // ),
-  //   textTheme: ThemeData.light().textTheme.apply(
-  //         fontFamily: 'Rubik',
-  //       ),
-  // );
   static final lightThemeMode = ThemeData(
     brightness: Brightness.light,
     fontFamily: 'Rubik',

@@ -14,3 +14,5 @@ final class AuthSignUpWithEmailEvent extends AuthEvent {
     required this.password,
   });
 }
+
+final class AuthNavigateToSignup extends AuthEvent {}

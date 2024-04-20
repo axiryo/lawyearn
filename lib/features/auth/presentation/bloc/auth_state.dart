@@ -7,16 +7,18 @@ sealed class AuthState {
 
 final class AuthInitial extends AuthState {}
 
+final class AuthLoading extends AuthState {}
+
+final class AuthError extends AuthState {
+  final String message;
+
+  const AuthError(this.message);
+}
+
 final class AuthSignUpWithEmailSuccess extends AuthState {
   final Profile profile;
 
   const AuthSignUpWithEmailSuccess({required this.profile});
 }
 
-final class AuthSignUpWithEmailLoading extends AuthState {}
-
-final class AuthSignUpWithEmailError extends AuthState {
-  final String message;
-
-  const AuthSignUpWithEmailError(this.message);
-}
+final class AuthNavigateToSignupSuccess extends AuthState {}
