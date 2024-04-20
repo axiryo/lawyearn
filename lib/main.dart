@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/core/theme/bloc/theme_state.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:lawyearn/features/auth/presentation/pages/signin_page.dart';
+import 'package:lawyearn/features/auth/presentation/pages/login_or_signup_page.dart';
 import 'package:lawyearn/service_locator.dart';
 
 void main() async {
@@ -36,7 +36,7 @@ class MainApp extends StatelessWidget {
                   debugShowCheckedModeBanner: false,
                   title: 'Lawyearn',
                   theme: state.themeData,
-                  home: const SignInPage(),
+                  home: const LoginOrSignupPage(),
                 ),
               );
             },
