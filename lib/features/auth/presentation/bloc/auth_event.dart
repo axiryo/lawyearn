@@ -15,4 +15,8 @@ final class AuthSignUpWithEmailEvent extends AuthEvent {
   });
 }
 
-final class AuthNavigateToSignup extends AuthEvent {}
+final class AuthContinueWithEmail extends AuthEvent {
+  final String email;
+
+  AuthContinueWithEmail({required this.email});
+}

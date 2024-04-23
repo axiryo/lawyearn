@@ -26,4 +26,18 @@ class AuthRepositoryImpl implements AuthRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> continueWithEmail(
+      {required String email}) async {
+    try {
+      final isEmailExist =
+          await authRemoteDataSource.continueWithEmail(email: email);
+      return right(isEmailExist);
+    } on AuthException catch (e) {
+      return left(Failure(e.message));
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

@@ -4,6 +4,7 @@ import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:lawyearn/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
+import 'package:lawyearn/features/auth/domain/usecases/auth_continue_with_email.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_sign_up_usecase.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -38,9 +39,15 @@ void _initAuth() {
         getIt(),
       ),
     )
+    ..registerFactory(
+      () => AuthContinueWithEmailUseCase(
+        getIt(),
+      ),
+    )
     ..registerLazySingleton(
       () => AuthBloc(
         authSignUpUseCase: getIt(),
+        authContinueWithEmailUseCase: getIt(),
       ),
     );
 }

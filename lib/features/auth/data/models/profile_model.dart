@@ -1,4 +1,4 @@
-import 'package:lawyearn/core/entities/profile.dart';
+import 'package:lawyearn/core/common/entities/profile.dart';
 
 class ProfileModel extends Profile {
   ProfileModel({

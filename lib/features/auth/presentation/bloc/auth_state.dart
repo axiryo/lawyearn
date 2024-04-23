@@ -21,4 +21,10 @@ final class AuthSignUpWithEmailSuccess extends AuthState {
   const AuthSignUpWithEmailSuccess({required this.profile});
 }
 
-final class AuthNavigateToSignupSuccess extends AuthState {}
+final class AuthEmailExist extends AuthState {}
+
+final class AuthEmailNotExist extends AuthState {
+  final String email;
+
+  const AuthEmailNotExist(this.email);
+}

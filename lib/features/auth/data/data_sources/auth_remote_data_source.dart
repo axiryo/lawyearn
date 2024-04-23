@@ -8,6 +8,10 @@ abstract interface class AuthRemoteDataSource {
     required String email,
     required String password,
   });
+
+  Future<bool> continueWithEmail({
+    required String email,
+  });
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -33,6 +37,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw const ServerException('User is null!');
       }
       return ProfileModel.fromMap(response.user!.toJson());
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<bool> continueWithEmail({required String email}) async {
+    try {
+      final response =
+          await supabaseClient.from('profiles').select().eq('email', email);
+      if (response.isNotEmpty) {
+        return true;
+      }
+      throw const ServerException('Email does not exist.');
     } catch (e) {
       throw ServerException(e.toString());
     }

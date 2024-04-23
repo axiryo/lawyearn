@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lawyearn/core/common/widgets/custom_loader.dart';
 import 'package:lawyearn/core/utils/show_snackbar.dart';
-import 'package:lawyearn/core/widgets/custom_app_bar.dart';
-import 'package:lawyearn/core/widgets/custom_button.dart';
-import 'package:lawyearn/core/widgets/custom_text_field.dart';
+import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
+import 'package:lawyearn/core/common/widgets/custom_button.dart';
+import 'package:lawyearn/core/common/widgets/custom_text_field.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
 
 class SignupPage extends StatefulWidget {
-  static route() => MaterialPageRoute(
-        builder: (context) => const SignupPage(),
+  static route(String email) => MaterialPageRoute(
+        builder: (context) => SignupPage(email: email),
       );
-  const SignupPage({super.key});
+
+  final String email;
+  const SignupPage({super.key, required this.email});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -19,14 +22,12 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     nameController.dispose();
-    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -46,9 +47,7 @@ class _SignupPageState extends State<SignupPage> {
           },
           builder: (context, state) {
             if (state is AuthLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const CustomLoader();
             }
 
             return Form(
@@ -74,16 +73,14 @@ class _SignupPageState extends State<SignupPage> {
                     'Information provided below must be real.',
                     textAlign: TextAlign.left,
                   ),
+                  Text(
+                    'You will be creating an account for: ${widget.email}',
+                    textAlign: TextAlign.left,
+                  ),
                   SizedBox(height: 8.h),
                   CustomTextField(
                     hintText: 'Name',
                     controller: nameController,
-                  ),
-                  SizedBox(height: 8.h),
-                  CustomTextField(
-                    hintText: 'Email',
-                    controller: emailController,
-                    textInputType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 8.h),
                   CustomTextField(
@@ -99,7 +96,7 @@ class _SignupPageState extends State<SignupPage> {
                           context.read<AuthBloc>().add(
                                 AuthSignUpWithEmailEvent(
                                   name: nameController.text.trim(),
-                                  email: emailController.text.trim(),
+                                  email: widget.email.trim(),
                                   password: passwordController.text.trim(),
                                 ),
                               );
