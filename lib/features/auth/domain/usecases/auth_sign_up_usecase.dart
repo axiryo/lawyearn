@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/error/failure.dart';
 import 'package:lawyearn/core/usecase/usecase.dart';

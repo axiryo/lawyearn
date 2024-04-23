@@ -1,10 +1,10 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:lawyearn/core/error/exception.dart';
 import 'package:lawyearn/core/error/failure.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:lawyearn/features/auth/data/models/profile_model.dart';
 import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource authRemoteDataSource;
@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final user = await authRemoteDataSource.signUpWithEmail(
           name: name, email: email, password: password);
       return right(user);
-    } on AuthException catch (e) {
+    } on sb.AuthException catch (e) {
       return left(Failure(e.message));
     } on ServerException catch (e) {
       return left(Failure(e.message));
@@ -34,7 +34,22 @@ class AuthRepositoryImpl implements AuthRepository {
       final isEmailExist =
           await authRemoteDataSource.continueWithEmail(email: email);
       return right(isEmailExist);
-    } on AuthException catch (e) {
+    } on sb.AuthException catch (e) {
+      return left(Failure(e.message));
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProfileModel>> loginWithEmail(
+      {required String email, required String password}) async {
+    try {
+      final user = await authRemoteDataSource.loginWithEmail(
+          email: email, password: password);
+
+      return right(user);
+    } on sb.AuthException catch (e) {
       return left(Failure(e.message));
     } on ServerException catch (e) {
       return left(Failure(e.message));

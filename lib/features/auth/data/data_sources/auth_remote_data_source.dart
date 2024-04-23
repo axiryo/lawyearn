@@ -12,6 +12,11 @@ abstract interface class AuthRemoteDataSource {
   Future<bool> continueWithEmail({
     required String email,
   });
+
+  Future<ProfileModel> loginWithEmail({
+    required String email,
+    required String password,
+  });
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -51,6 +56,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return true;
       }
       throw const ServerException('Email does not exist.');
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  @override
+  Future<ProfileModel> loginWithEmail(
+      {required String email, required String password}) async {
+    try {
+      final response = await supabaseClient.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+      if (response.user == null) {
+        throw const ServerException('User is null!');
+      }
+      return ProfileModel.fromMap(response.user!.toJson());
     } catch (e) {
       throw ServerException(e.toString());
     }

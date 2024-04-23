@@ -20,3 +20,10 @@ final class AuthContinueWithEmail extends AuthEvent {
 
   AuthContinueWithEmail({required this.email});
 }
+
+final class AuthLoginWithEmail extends AuthEvent {
+  final String email;
+  final String password;
+
+  AuthLoginWithEmail({required this.email, required this.password});
+}

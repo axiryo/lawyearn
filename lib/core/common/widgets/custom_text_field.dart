@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final bool isObscureText;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
+  final FormFieldValidator<String>? validator;
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -13,6 +14,7 @@ class CustomTextField extends StatelessWidget {
     this.isObscureText = false,
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
+    this.validator,
   });
 
   @override
@@ -23,12 +25,13 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
       ),
-      validator: (value) {
-        if (value!.isEmpty) {
-          return "$hintText is missing!";
-        }
-        return null;
-      },
+      validator: validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return '$hintText is missing!';
+            }
+            return null;
+          },
       obscureText: isObscureText,
       textInputAction: textInputAction,
     );
