@@ -3,27 +3,37 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final IconData leadingIcon;
+  final Widget? leading;
   final VoidCallback? onLeadingIconTap;
+  final bool? isTitleCentered;
+  final List<Widget>? actions;
 
   const CustomAppBar({
     super.key,
     this.title = '',
-    this.leadingIcon = Icons.chevron_left,
+    this.leading,
     this.onLeadingIconTap,
+    this.isTitleCentered = true,
+    this.actions,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
-      leading: IconButton(
-        icon: Icon(
-          leadingIcon,
-          size: 32.sp,
-        ),
-        onPressed: onLeadingIconTap ?? () => Navigator.of(context).pop(),
+      centerTitle: isTitleCentered,
+      leading: GestureDetector(
+        onTap: onLeadingIconTap,
+        child: leading ??
+            IconButton(
+              icon: Icon(
+                Icons.chevron_left,
+                size: 32.sp,
+              ),
+              onPressed: onLeadingIconTap ?? () => Navigator.of(context).pop(),
+            ),
       ),
+      actions: actions,
     );
   }
 

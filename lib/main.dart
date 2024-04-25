@@ -48,22 +48,20 @@ class _MainAppState extends State<MainApp> {
       builder: (context, state) {
         return ScreenUtilInit(
           builder: (context, child) {
-            return SafeArea(
-              child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Lawyearn',
-                theme: state.themeData,
-                home: BlocSelector<AppUserCubit, AppUserState, bool>(
-                  selector: (state) {
-                    return state is AppUserLoggedIn;
-                  },
-                  builder: (context, isLoggedIn) {
-                    if (isLoggedIn) {
-                      return const Homepage();
-                    }
-                    return const LoginOrSignupPage();
-                  },
-                ),
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Lawyearn',
+              theme: state.themeData,
+              home: BlocSelector<AppUserCubit, AppUserState, bool>(
+                selector: (state) {
+                  return state is AppUserLoggedIn;
+                },
+                builder: (context, isLoggedIn) {
+                  if (isLoggedIn) {
+                    return const Homepage();
+                  }
+                  return const LoginOrSignupPage();
+                },
               ),
             );
           },

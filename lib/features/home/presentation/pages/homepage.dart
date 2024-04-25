@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lawyearn/core/common/widgets/search_text_field.dart';
+import 'package:lawyearn/features/home/presentation/widgets/home_app_bar.dart';
+import 'package:lawyearn/features/home/presentation/widgets/home_feature_lawyers.dart';
+import 'package:lawyearn/features/home/presentation/widgets/lawyers_list.dart';
 
 class Homepage extends StatelessWidget {
   static route() => MaterialPageRoute(
@@ -9,12 +14,18 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.add_circle_outline))
-        ],
+      appBar: const HomeAppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(16.sp, 16.sp, 16.sp, 0.sp),
+              child: SearchTextField(onSearchChanged: (value) {}),
+            ),
+            const FeaturedLawyers(),
+            const LawyersList(),
+          ],
+        ),
       ),
     );
   }
