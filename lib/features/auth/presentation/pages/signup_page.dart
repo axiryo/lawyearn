@@ -7,6 +7,7 @@ import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
 import 'package:lawyearn/core/common/widgets/custom_text_field.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lawyearn/features/home/presentation/pages/homepage.dart';
 
 class SignupPage extends StatefulWidget {
   static route(String email) => MaterialPageRoute(
@@ -43,6 +44,13 @@ class _SignupPageState extends State<SignupPage> {
           listener: (context, state) {
             if (state is AuthError) {
               showSnackBar(context, state.message);
+            }
+            if (state is AuthSuccess) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                Homepage.route(),
+                (route) => false,
+              );
             }
           },
           builder: (context, state) {

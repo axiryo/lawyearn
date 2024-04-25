@@ -1,10 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
 import 'package:lawyearn/core/secrets/app_secrets.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:lawyearn/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_continue_with_email.dart';
+import 'package:lawyearn/features/auth/domain/usecases/auth_current_user.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_login_with_email.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_sign_up_usecase.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
@@ -19,6 +21,7 @@ Future<void> setupLocator() async {
   );
 
   getIt.registerLazySingleton(() => supabase.client);
+  getIt.registerLazySingleton(() => AppUserCubit());
   _initAuth();
   _initTheme();
 }
@@ -50,11 +53,18 @@ void _initAuth() {
         getIt(),
       ),
     )
+    ..registerFactory(
+      () => AuthCurrentUserUseCase(
+        getIt(),
+      ),
+    )
     ..registerLazySingleton(
       () => AuthBloc(
         authSignUpUseCase: getIt(),
         authContinueWithEmailUseCase: getIt(),
         authLoginWithEmailUseCase: getIt(),
+        authCurrentUserUseCase: getIt(),
+        appUserCubit: getIt(),
       ),
     );
 }

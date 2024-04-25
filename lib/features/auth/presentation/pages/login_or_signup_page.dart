@@ -16,6 +16,9 @@ import 'package:lawyearn/features/auth/presentation/widgets/auth_policy.dart';
 import 'package:lawyearn/features/auth/presentation/widgets/auth_social_buttons.dart';
 
 class LoginOrSignupPage extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const LoginOrSignupPage(),
+      );
   const LoginOrSignupPage({super.key});
 
   @override

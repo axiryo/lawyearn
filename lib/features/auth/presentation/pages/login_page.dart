@@ -7,6 +7,7 @@ import 'package:lawyearn/core/common/widgets/custom_loader.dart';
 import 'package:lawyearn/core/common/widgets/custom_text_field.dart';
 import 'package:lawyearn/core/utils/show_snackbar.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lawyearn/features/home/presentation/pages/homepage.dart';
 
 class LoginPage extends StatefulWidget {
   static route(String email) => MaterialPageRoute(
@@ -42,8 +43,12 @@ class _LoginPageState extends State<LoginPage> {
             if (state is AuthError) {
               showSnackBar(context, state.message);
             }
-            if (state is AuthLoginWithEmailSuccess) {
-              showSnackBar(context, state.profile.id);
+            if (state is AuthSuccess) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                Homepage.route(),
+                (route) => false,
+              );
             }
           },
           builder: (context, state) {
@@ -59,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Center(
                     child: Text(
-                      'Create a password',
+                      'Enter your password',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 26.sp,
@@ -84,14 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                   SizedBox(height: 8.h),
-                  Text(
-                    'Minimum of 6 characters',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 12.sp),
-                  ),
-                  SizedBox(height: 16.h),
                   CustomPrimaryButton(
-                      buttonText: 'Create account',
+                      buttonText: 'Login',
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           context.read<AuthBloc>().add(

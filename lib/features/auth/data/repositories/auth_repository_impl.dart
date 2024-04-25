@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/error/exception.dart';
 import 'package:lawyearn/core/error/failure.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:lawyearn/features/auth/data/models/profile_model.dart';
 import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
@@ -12,7 +12,21 @@ class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(this.authRemoteDataSource);
 
   @override
-  Future<Either<Failure, ProfileModel>> signUpWithEmail(
+  Future<Either<Failure, Profile>> currentUser() async {
+    try {
+      final user = await authRemoteDataSource.getCurrentUserdata();
+      if (user == null) {
+        return left(Failure('User not logged in!'));
+      }
+
+      return right(user);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Profile>> signUpWithEmail(
       {required String name,
       required String email,
       required String password}) async {
@@ -42,7 +56,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, ProfileModel>> loginWithEmail(
+  Future<Either<Failure, Profile>> loginWithEmail(
       {required String email, required String password}) async {
     try {
       final user = await authRemoteDataSource.loginWithEmail(

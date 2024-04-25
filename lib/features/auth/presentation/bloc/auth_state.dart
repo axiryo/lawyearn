@@ -15,12 +15,6 @@ final class AuthError extends AuthState {
   const AuthError(this.message);
 }
 
-final class AuthSignUpWithEmailSuccess extends AuthState {
-  final Profile profile;
-
-  const AuthSignUpWithEmailSuccess({required this.profile});
-}
-
 final class AuthEmailExist extends AuthState {
   final String email;
 
@@ -33,8 +27,8 @@ final class AuthEmailNotExist extends AuthState {
   const AuthEmailNotExist(this.email);
 }
 
-final class AuthLoginWithEmailSuccess extends AuthState {
+final class AuthSuccess extends AuthState {
   final Profile profile;
 
-  const AuthLoginWithEmailSuccess({required this.profile});
+  const AuthSuccess({required this.profile});
 }
