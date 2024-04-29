@@ -24,6 +24,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(color: Color(0xFFF7F7F6)),
     primaryColor: const Color(0xFF070707),
     shadowColor: Colors.transparent,
+    cardColor: AppPallete.whiteColor,
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppPallete.lightTextFieldFillColor,
       filled: true,
@@ -39,6 +40,9 @@ class AppTheme {
         style: ButtonStyle(
       overlayColor: MaterialStatePropertyAll(AppPallete.accentColor),
     )),
+    listTileTheme: const ListTileThemeData(
+      tileColor: AppPallete.whiteColor,
+    ),
     highlightColor: AppPallete.accentColor,
     disabledColor: AppPallete.lightDisabledPrimaryButton,
   );

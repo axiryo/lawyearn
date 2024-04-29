@@ -22,6 +22,7 @@ class CustomButtonWithIcon extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 0,
+        shadowColor: Colors.transparent,
         fixedSize: Size(double.maxFinite.w, 44.h),
         foregroundColor: Theme.of(context).primaryColor,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

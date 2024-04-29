@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
 import 'package:lawyearn/core/secrets/app_secrets.dart';
+import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:lawyearn/features/auth/data/repositories/auth_repository_impl.dart';
@@ -22,6 +23,7 @@ Future<void> setupLocator() async {
 
   getIt.registerLazySingleton(() => supabase.client);
   getIt.registerLazySingleton(() => AppUserCubit());
+  getIt.registerLazySingleton<GlobalUserProvider>(() => GlobalUserProvider());
   _initAuth();
   _initTheme();
 }

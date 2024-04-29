@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
@@ -10,7 +8,8 @@ import 'package:lawyearn/service_locator.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+  final void Function() onLeadingIconTap;
+  const HomeAppBar({super.key, required this.onLeadingIconTap});
 
   @override
   Widget build(BuildContext context) {
@@ -27,19 +26,19 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      onLeadingIconTap: () async {
-        await getIt<SupabaseClient>().auth.signOut();
-        Navigator.pushAndRemoveUntil(
-          context,
-          LoginOrSignupPage.route(),
-          (route) => false,
-        );
-      },
+      onLeadingIconTap: onLeadingIconTap,
       actions: [
         Container(
           margin: EdgeInsets.fromLTRB(0.sp, 0.sp, 12.sp, 0.sp),
           child: IconButton(
-            onPressed: () => log('bell pressed'),
+            onPressed: () async {
+              await getIt<SupabaseClient>().auth.signOut();
+              Navigator.pushAndRemoveUntil(
+                context,
+                LoginOrSignupPage.route(),
+                (route) => false,
+              );
+            },
             icon: const Badge(child: Icon(Icons.notifications)),
             iconSize: 28.sp,
           ),
