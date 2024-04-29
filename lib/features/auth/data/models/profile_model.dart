@@ -1,7 +1,7 @@
 import 'package:lawyearn/core/common/entities/profile.dart';
 
 class ProfileModel extends Profile {
-  ProfileModel({
+  const ProfileModel({
     required super.id,
     required super.email,
     required super.name,
