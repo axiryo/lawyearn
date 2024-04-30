@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lawyearn/core/common/widgets/custom_loader.dart';
 import 'package:lawyearn/core/common/widgets/custom_text_field.dart';
+import 'package:lawyearn/core/common/widgets/overlay_loader.dart';
 import 'package:lawyearn/core/utils/show_snackbar.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
 import 'package:lawyearn/core/common/widgets/display_lawyearn_logo.dart';
@@ -37,68 +37,69 @@ class _LoginOrSignupPageState extends State<LoginOrSignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 16.sp, vertical: 16.sp),
-          child: BlocConsumer<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is AuthError) {
-                showSnackBar(context, state.message);
-              }
-              if (state is AuthEmailNotExist) {
-                Navigator.push(
-                  context,
-                  SignupPage.route(state.email),
-                );
-              }
-              if (state is AuthEmailExist) {
-                Navigator.push(
-                  context,
-                  LoginPage.route(state.email),
-                );
-              }
-            },
-            builder: (context, state) {
-              if (state is AuthLoading) {
-                return const CustomLoader();
-              }
-
-              return Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const DisplayLawyearnLogo(),
-                    const AuthLoginSignupMessage(),
-                    CustomTextField(
-                      hintText: 'Email',
-                      controller: emailController,
-                      textInputType: TextInputType.emailAddress,
-                    ),
-                    SizedBox(height: 8.h),
-                    CustomPrimaryButton(
-                        buttonText: 'Continue with Email',
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            context.read<AuthBloc>().add(AuthContinueWithEmail(
-                                email: emailController.text.trim()));
-                          }
-                        }),
-                    const AuthOrDivider(),
-                    const AuthSocialButtons(),
-                    const AuthNeedHelpSignIn(),
-                    const AuthPolicy(),
-                  ],
+    return BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthError) {
+          showSnackBar(context, state.message);
+        }
+        if (state is AuthEmailNotExist) {
+          Navigator.push(
+            context,
+            SignupPage.route(state.email),
+          );
+        }
+        if (state is AuthEmailExist) {
+          Navigator.push(
+            context,
+            LoginPage.route(state.email),
+          );
+        }
+      },
+      builder: (context, state) {
+        return OverlayLoader(
+          isLoading: state is AuthLoading,
+          child: Scaffold(
+            body: Center(
+              child: SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+                padding:
+                    EdgeInsets.symmetric(horizontal: 16.sp, vertical: 16.sp),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const DisplayLawyearnLogo(),
+                      const AuthLoginSignupMessage(),
+                      CustomTextField(
+                        hintText: 'Email',
+                        controller: emailController,
+                        textInputType: TextInputType.emailAddress,
+                      ),
+                      SizedBox(height: 8.h),
+                      CustomPrimaryButton(
+                          buttonText: 'Continue with Email',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              context.read<AuthBloc>().add(
+                                  AuthContinueWithEmail(
+                                      email: emailController.text.trim()));
+                            }
+                          }),
+                      const AuthOrDivider(),
+                      const AuthSocialButtons(),
+                      const AuthNeedHelpSignIn(),
+                      const AuthPolicy(),
+                    ],
+                  ),
                 ),
-              );
-            },
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

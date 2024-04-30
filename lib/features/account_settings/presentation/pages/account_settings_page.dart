@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
-import 'package:lawyearn/core/common/widgets/custom_loader.dart';
+import 'package:lawyearn/core/common/widgets/overlay_loader.dart';
 import 'package:lawyearn/features/account_settings/presentation/bloc/account_settings_bloc.dart';
 import 'package:lawyearn/features/account_settings/presentation/widgets/account_settings_menu.dart';
 import 'package:lawyearn/features/account_settings/presentation/widgets/accout_card.dart';
@@ -17,25 +17,24 @@ class AccountSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const CustomAppBar(
-          title: 'Account Settings',
-        ),
-        body: BlocConsumer<AccountSettingsBloc, AccountSettingsState>(
-          listener: (context, state) {
-            if (state is AccountSettingsLogout) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                LoginOrSignupPage.route(),
-                (route) => false,
-              );
-            }
-          },
-          builder: (context, state) {
-            if (state is AccountSettingsLoading) {
-              return const CustomLoader();
-            }
-            return SingleChildScrollView(
+    return BlocConsumer<AccountSettingsBloc, AccountSettingsState>(
+      listener: (context, state) {
+        if (state is AccountSettingsLogout) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            LoginOrSignupPage.route(),
+            (route) => false,
+          );
+        }
+      },
+      builder: (context, state) {
+        return OverlayLoader(
+          isLoading: state is AccountSettingsLoading,
+          child: Scaffold(
+            appBar: const CustomAppBar(
+              title: 'Account Settings',
+            ),
+            body: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
@@ -54,8 +53,10 @@ class AccountSettingsPage extends StatelessWidget {
                   ),
                 ],
               ),
-            );
-          },
-        ));
+            ),
+          ),
+        );
+      },
+    );
   }
 }
