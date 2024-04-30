@@ -44,10 +44,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         name: event.name, email: event.email, password: event.password));
 
     response.fold(
-        (l) => emit(AuthError(l.message)),
-        (user) => emit(
-              AuthSuccess(profile: user),
-            ));
+      (l) => emit(AuthError(l.message)),
+      (user) => _emitAuthSuccess(user, emit),
+    );
   }
 
   FutureOr<void> authContinueWithEmail(

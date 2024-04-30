@@ -48,7 +48,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.user == null) {
         throw const ServerException('User is null!');
       }
-      return ProfileModel.fromMap(response.user!.toJson());
+      return ProfileModel.fromMap(response.user!.toJson())
+          .copyWith(name: currentUserSession!.user.userMetadata!['name']);
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -79,7 +80,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.user == null) {
         throw const ServerException('User is null!');
       }
-      return ProfileModel.fromMap(response.user!.toJson());
+      return ProfileModel.fromMap(response.user!.toJson())
+          .copyWith(name: currentUserSession!.user.userMetadata!['name']);
     } catch (e) {
       throw ServerException(e.toString());
     }

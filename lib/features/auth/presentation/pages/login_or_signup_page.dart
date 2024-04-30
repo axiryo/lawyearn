@@ -86,6 +86,7 @@ class _LoginOrSignupPageState extends State<LoginOrSignupPage> {
                               context.read<AuthBloc>().add(
                                   AuthContinueWithEmail(
                                       email: emailController.text.trim()));
+                              FocusScope.of(context).unfocus();
                             }
                           }),
                       const AuthOrDivider(),
