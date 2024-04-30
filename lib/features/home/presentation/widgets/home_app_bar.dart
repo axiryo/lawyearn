@@ -1,11 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
 import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
 import 'package:lawyearn/core/constants/constants.dart';
-import 'package:lawyearn/features/auth/presentation/pages/login_or_signup_page.dart';
-import 'package:lawyearn/service_locator.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final void Function() onLeadingIconTap;
@@ -31,14 +30,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         Container(
           margin: EdgeInsets.fromLTRB(0.sp, 0.sp, 12.sp, 0.sp),
           child: IconButton(
-            onPressed: () async {
-              await getIt<SupabaseClient>().auth.signOut();
-              Navigator.pushAndRemoveUntil(
-                context,
-                LoginOrSignupPage.route(),
-                (route) => false,
-              );
-            },
+            onPressed: () => log('notif clicked'),
             icon: const Badge(child: Icon(Icons.notifications)),
             iconSize: 28.sp,
           ),

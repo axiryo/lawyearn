@@ -16,9 +16,8 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar(
-        onLeadingIconTap: () =>
-            Navigator.push(context, AccountSettingsPage.route()),
-      ),
+          onLeadingIconTap: () =>
+              Navigator.push(context, AccountSettingsPage.route())),
       body: SingleChildScrollView(
         child: Column(
           children: [

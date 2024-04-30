@@ -1,6 +1,7 @@
 class Constants {
   static const String sampleProfilePic =
       'https://scontent.fmnl2-2.fna.fbcdn.net/v/t39.30808-6/320440858_1466898310468778_1612354848177375574_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=0YNf1b0yVsIQ7kNvgFz6zPD&_nc_ht=scontent.fmnl2-2.fna&cb_e2o_trans=t&oh=00_AfCgqqLlHZ9UHwZwJbTWHMpmo5RzuXhZ850ccnF5Sd2h1g&oe=663077D4';
+
   static const List<String> sampleList = [
     'https://scontent.fmnl2-2.fna.fbcdn.net/v/t39.30808-6/320440858_1466898310468778_1612354848177375574_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=0YNf1b0yVsIQ7kNvgFz6zPD&_nc_ht=scontent.fmnl2-2.fna&cb_e2o_trans=t&oh=00_AfCgqqLlHZ9UHwZwJbTWHMpmo5RzuXhZ850ccnF5Sd2h1g&oe=663077D4',
     'https://scontent.fmnl2-2.fna.fbcdn.net/v/t1.6435-9/79490290_2487866191311684_7043367021043515392_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7yIlSEogwcoAb7xSIUk&_nc_ht=scontent.fmnl2-2.fna&cb_e2o_trans=t&oh=00_AfCcZAxUqoiW31FKVtFD3qd68a_RynkXy4SxGvsdAha_8w&oe=66520520',

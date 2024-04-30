@@ -5,8 +5,10 @@ import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/core/theme/bloc/theme_state.dart';
+import 'package:lawyearn/features/account_settings/presentation/bloc/account_settings_bloc.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lawyearn/features/auth/presentation/pages/login_or_signup_page.dart';
+import 'package:lawyearn/features/home/presentation/bloc/home_bloc.dart';
 import 'package:lawyearn/features/home/presentation/pages/homepage.dart';
 import 'package:lawyearn/service_locator.dart';
 
@@ -23,6 +25,12 @@ void main() async {
       ),
       BlocProvider(
         create: (context) => getIt<AuthBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => getIt<HomeBloc>(),
+      ),
+      BlocProvider(
+        create: (context) => getIt<AccountSettingsBloc>(),
       ),
     ],
     child: const MainApp(),
