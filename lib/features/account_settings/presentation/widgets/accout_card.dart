@@ -81,7 +81,9 @@ class AccountCard extends StatelessWidget {
               ],
             ),
             CustomPrimaryButton(
-              buttonText: 'Edit your profile',
+              buttonText: profile.isEmailVerified
+                  ? 'Edit your profile'
+                  : 'Finish your profile',
               onPressed: () {},
             ),
           ],
