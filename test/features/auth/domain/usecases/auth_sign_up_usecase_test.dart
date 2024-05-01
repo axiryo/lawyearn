@@ -14,12 +14,20 @@ void main() {
   setUp(() {
     mockAuthRepository = MockAuthRepository();
     authSignUpUseCase = AuthSignUpUseCase(mockAuthRepository);
-    provideDummy<Either<Failure, Profile>>(const Right(
-        Profile(id: 'dummyId', email: 'dummy@email.com', name: 'Dummy Name')));
+    provideDummy<Either<Failure, Profile>>(const Right(Profile(
+      id: 'dummyId',
+      email: 'dummy@email.com',
+      name: 'Dummy Name',
+      isEmailVerified: false,
+    )));
   });
 
-  const testAuthProfile =
-      Profile(id: '1', email: 'asirrhcaridad@gmail.com', name: 'John');
+  const testAuthProfile = Profile(
+    id: '1',
+    email: 'asirrhcaridad@gmail.com',
+    name: 'John',
+    isEmailVerified: false,
+  );
 
   const testAuthName = 'John';
   const testAuthEmail = 'asirrhcaridad@gmail.com';
