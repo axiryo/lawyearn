@@ -17,4 +17,8 @@ class GlobalUserProvider {
   Profile? getUserProfile() {
     return _userProfile;
   }
+
+  void clearUserProfile() {
+    _userProfile = null;
+  }
 }
