@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
-import 'package:lawyearn/core/constants/constants.dart';
+import 'package:lawyearn/core/constants/app_constants.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/service_locator.dart';
 
@@ -41,7 +41,7 @@ class AccountCard extends StatelessWidget {
                           width: 100.w,
                           child: const CircleAvatar(
                             backgroundImage: CachedNetworkImageProvider(
-                                Constants.sampleProfilePic),
+                                AppConstants.sampleProfilePic),
                           ),
                         ),
                         Positioned(

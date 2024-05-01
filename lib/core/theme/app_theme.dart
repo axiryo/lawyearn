@@ -36,6 +36,15 @@ class AppTheme {
       focusedBorder: _lightBorder(AppPallete.accentColor, 2),
       errorBorder: _lightBorder(AppPallete.errorColor),
     ),
+    chipTheme: ChipThemeData(
+      color: const MaterialStatePropertyAll(
+        Colors.green,
+      ),
+      side: BorderSide.none,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(50),
+      ),
+    ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
         style: ButtonStyle(
       overlayColor: MaterialStatePropertyAll(AppPallete.accentColor),
@@ -44,6 +53,9 @@ class AppTheme {
       tileColor: AppPallete.whiteColor,
     ),
     highlightColor: AppPallete.accentColor,
+    dividerTheme: const DividerThemeData(
+      color: Color(0xFF070707),
+    ),
     disabledColor: AppPallete.lightDisabledPrimaryButton,
   );
 }

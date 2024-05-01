@@ -47,6 +47,12 @@ flutter:
     - family: Rubik
       fonts:
         - asset: assets/fonts/Rubik-Regular.ttf
+    - family: Lugrasimo
+      fonts:
+        - asset: assets/fonts/Lugrasimo-Regular.ttf
+    - family: PTSerif
+      fonts:
+        - asset: assets/fonts/PTSerif-Regular.ttf
 
 flutter_icons:
   android: "launcher_icon"

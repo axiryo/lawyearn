@@ -2,7 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
-import 'package:lawyearn/core/constants/constants.dart';
+import 'package:lawyearn/core/common/widgets/roboto_text.dart';
+import 'package:lawyearn/core/constants/app_constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class FeaturedLawyers extends StatelessWidget {
@@ -12,11 +13,17 @@ class FeaturedLawyers extends StatelessWidget {
   Widget build(BuildContext context) {
     final ValueNotifier<int> currentPageIndex = ValueNotifier<int>(0);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 16.h),
+        RobotoText(
+          text: '✨ Featured Lawyers ✨',
+          style: TextStyle(
+            fontSize: 20.sp,
+          ),
+        ),
+        SizedBox(height: 8.h),
         CarouselSlider(
-          items: Constants.sampleList
+          items: AppConstants.sampleList
               .map((e) => CacheNetworkImageWithPlaceholder(
                     imageUrl: e,
                     width: double.maxFinite,
@@ -40,7 +47,7 @@ class FeaturedLawyers extends StatelessWidget {
             return Center(
               child: AnimatedSmoothIndicator(
                 activeIndex: value,
-                count: Constants.sampleList.length,
+                count: AppConstants.sampleList.length,
                 effect: ExpandingDotsEffect(
                   radius: 8,
                   spacing: 10,

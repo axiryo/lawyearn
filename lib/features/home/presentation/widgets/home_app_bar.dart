@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
 import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
-import 'package:lawyearn/core/constants/constants.dart';
+import 'package:lawyearn/core/constants/app_constants.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final void Function() onLeadingIconTap;
@@ -18,7 +18,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         margin: EdgeInsets.fromLTRB(16.sp, 6.sp, 6.sp, 6.sp),
         child: const CircleAvatar(
           child: CacheNetworkImageWithPlaceholder(
-            imageUrl: Constants.sampleProfilePic,
+            imageUrl: AppConstants.sampleProfilePic,
             borderRadius: BorderRadius.all(
               Radius.circular(50),
             ),
