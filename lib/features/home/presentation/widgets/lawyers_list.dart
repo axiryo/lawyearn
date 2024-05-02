@@ -20,34 +20,33 @@ class LawyersList extends StatelessWidget {
             text: 'Lawyers near you',
             style: TextStyle(
               fontSize: 20.sp,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
         SizedBox(height: 8.h),
-        Container(
-          decoration: BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                  color: Theme.of(context).primaryColor, width: 1.sp),
-              bottom: BorderSide(
-                  color: Theme.of(context).primaryColor, width: 1.sp),
-              left: BorderSide.none,
-              right: BorderSide.none,
-            ),
-          ),
-          child: ListView.separated(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: AppConstants.sampleList.length,
-            separatorBuilder: (context, index) => const Divider(),
-            itemBuilder: (context, index) {
-              return Padding(
+        ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: AppConstants.sampleList.length,
+          itemBuilder: (context, index) {
+            return Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(
+                      color: Theme.of(context).primaryColor, width: 1.sp),
+                  bottom: BorderSide.none,
+                  left: BorderSide.none,
+                  right: BorderSide.none,
+                ),
+              ),
+              child: Padding(
                 padding: EdgeInsets.only(bottom: 1.sp),
                 child: SizedBox(
                   child: Padding(
                     padding: EdgeInsets.all(16.sp),
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
                           padding: EdgeInsets.only(right: 8.sp),
@@ -56,7 +55,7 @@ class LawyersList extends StatelessWidget {
                             imageUrl: AppConstants.sampleList[index],
                             width: 80.w,
                             borderRadius:
-                                BorderRadius.all(Radius.circular(12.sp)),
+                                BorderRadius.all(Radius.circular(4.sp)),
                           ),
                         ),
                         Expanded(
@@ -64,12 +63,18 @@ class LawyersList extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              PTSerifText(
-                                text: AppConstants.sampleNames[index],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 20.sp,
-                                ),
+                              Row(
+                                children: [
+                                  PTSerifText(
+                                    text: AppConstants.sampleNames[index],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20.sp,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  const Icon(Icons.bookmark_outline),
+                                ],
                               ),
                               SizedBox(height: 8.h),
                               const RobotoText(
@@ -89,20 +94,13 @@ class LawyersList extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            const Icon(Icons.bookmark_outline),
-                            SizedBox(height: 8.h),
-                          ],
-                        ),
                       ],
                     ),
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ],
     );

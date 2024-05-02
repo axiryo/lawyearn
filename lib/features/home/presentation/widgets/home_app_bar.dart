@@ -1,40 +1,32 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
-import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
-import 'package:lawyearn/core/constants/app_constants.dart';
+import 'package:lawyearn/core/common/widgets/roboto_text.dart';
+import 'package:lawyearn/features/account_settings/presentation/pages/account_settings_page.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final void Function() onLeadingIconTap;
-  const HomeAppBar({super.key, required this.onLeadingIconTap});
+  final bool? isTitleCentered;
+  const HomeAppBar({
+    super.key,
+    this.isTitleCentered,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return CustomAppBar(
-      title: 'Lawyearn',
-      leading: Container(
-        margin: EdgeInsets.fromLTRB(16.sp, 6.sp, 6.sp, 6.sp),
-        child: const CircleAvatar(
-          child: CacheNetworkImageWithPlaceholder(
-            imageUrl: AppConstants.sampleProfilePic,
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
-            ),
-          ),
-        ),
+    return AppBar(
+      title: const RobotoText(
+        text: 'Lawyearn',
       ),
-      onLeadingIconTap: onLeadingIconTap,
+      centerTitle: isTitleCentered,
       actions: [
-        Container(
-          margin: EdgeInsets.fromLTRB(0.sp, 0.sp, 12.sp, 0.sp),
-          child: IconButton(
-            onPressed: () => log('notif clicked'),
-            icon: const Badge(child: Icon(Icons.notifications)),
-            iconSize: 28.sp,
-          ),
-        )
+        IconButton(
+          onPressed: () => log('notif clicked'),
+          icon: const Badge(child: Icon(Icons.notifications)),
+        ),
+        IconButton(
+          onPressed: () => Navigator.push(context, AccountSettingsPage.route()),
+          icon: const Icon(Icons.settings),
+        ),
       ],
     );
   }

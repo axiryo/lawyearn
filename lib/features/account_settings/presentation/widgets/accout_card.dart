@@ -63,11 +63,19 @@ class AccountCard extends StatelessWidget {
             ),
             IconButton(
               onPressed: () => log('qr code clicked'),
-              icon: SvgPicture.asset('assets/images/qr_code.svg'),
+              icon: SvgPicture.asset(
+                'assets/images/qr_code.svg',
+                width: 20.w,
+                height: 20.h,
+              ),
             ),
             IconButton(
-              onPressed: () => log('qr code clicked'),
-              icon: SvgPicture.asset('assets/images/share.svg'),
+              onPressed: () => log('share clicked'),
+              icon: SvgPicture.asset(
+                'assets/images/share.svg',
+                width: 20.w,
+                height: 20.h,
+              ),
             ),
           ],
         ),

@@ -17,7 +17,7 @@ class AppPallete {
   static const Color darkBorderColor = Color(0xFFbbc3cd);
 
   // generic colors
-  static const Color accentColor = Color(0xFF60a8fc);
+  static const Color accentColor = Color(0xFF0384fe);
   static const Color chipColor = Color(0xFF3d9f76);
   static const Color whiteColor = Colors.white;
   static const Color blackColor = Colors.black;

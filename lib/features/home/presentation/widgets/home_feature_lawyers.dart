@@ -13,12 +13,16 @@ class FeaturedLawyers extends StatelessWidget {
   Widget build(BuildContext context) {
     final ValueNotifier<int> currentPageIndex = ValueNotifier<int>(0);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 16.h),
-        RobotoText(
-          text: '✨ Featured Lawyers ✨',
-          style: TextStyle(
-            fontSize: 20.sp,
+        Padding(
+          padding: EdgeInsets.only(left: 16.sp),
+          child: RobotoText(
+            text: 'Featured Lawyers',
+            style: TextStyle(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         SizedBox(height: 8.h),
@@ -27,12 +31,11 @@ class FeaturedLawyers extends StatelessWidget {
               .map((e) => CacheNetworkImageWithPlaceholder(
                     imageUrl: e,
                     width: double.maxFinite,
-                    borderRadius: BorderRadius.all(Radius.circular(12.sp)),
                     fit: BoxFit.fitWidth,
                   ))
               .toList(),
           options: CarouselOptions(
-            viewportFraction: 0.8,
+            viewportFraction: 0.9,
             autoPlay: true,
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
