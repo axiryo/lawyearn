@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
@@ -24,79 +26,66 @@ class LawyersList extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 8.h),
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: AppConstants.sampleList.length,
           itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                      color: Theme.of(context).primaryColor, width: 1.sp),
-                  bottom: BorderSide.none,
-                  left: BorderSide.none,
-                  right: BorderSide.none,
-                ),
-              ),
+            return InkWell(
+              onTap: () => log('Lawyer #$index'),
               child: Padding(
-                padding: EdgeInsets.only(bottom: 1.sp),
-                child: SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.sp),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(right: 8.sp),
-                          child: CacheNetworkImageWithPlaceholder(
-                            height: 80.h,
-                            imageUrl: AppConstants.sampleList[index],
-                            width: 80.w,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(4.sp)),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                padding: EdgeInsets.all(16.sp),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 8.sp),
+                      child: CacheNetworkImageWithPlaceholder(
+                        height: 80.h,
+                        imageUrl: AppConstants.sampleList[index],
+                        width: 80.w,
+                        borderRadius: BorderRadius.all(Radius.circular(4.sp)),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
                             children: [
-                              Row(
-                                children: [
-                                  PTSerifText(
-                                    text: AppConstants.sampleNames[index],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 20.sp,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Icon(Icons.bookmark_outline),
-                                ],
-                              ),
-                              SizedBox(height: 8.h),
-                              const RobotoText(
-                                text:
-                                    'A sample description about the lawyers experience in law firm. 5 years of experience in MVVM Suits industry.',
-                                textOverflow: TextOverflow.ellipsis,
-                              ),
-                              SizedBox(height: 8.h),
-                              PTSerifText(
-                                text: AppConstants.sampleExpertise[index],
+                              RobotoText(
+                                text: AppConstants.sampleNames[index],
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 16.sp,
-                                  fontStyle: FontStyle.italic,
+                                  fontSize: 20.sp,
                                 ),
+                              ),
+                              const Spacer(),
+                              GestureDetector(
+                                onTap: () => log('bookmark clicked'),
+                                child: const Icon(Icons.bookmark_outline),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                          const RobotoText(
+                            text:
+                                'A sample description about the lawyers experience in law firm. 5 years of experience in MVVM Suits industry.',
+                            textOverflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          PTSerifText(
+                            text: AppConstants.sampleExpertise[index],
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.sp,
+                              color: Theme.of(context).highlightColor,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             );
@@ -106,56 +95,3 @@ class LawyersList extends StatelessWidget {
     );
   }
 }
-
-// ListView.builder(
-//           physics: const NeverScrollableScrollPhysics(),
-//           shrinkWrap: true,
-//           itemCount: AppConstants.sampleList.length,
-//           itemBuilder: (context, index) {
-//             return Padding(
-//               padding: EdgeInsets.only(bottom: 1.sp),
-//               child: Container(
-//                 color: Colors.grey,
-//                 height: 160.h,
-//                 child: Padding(
-//                   padding: EdgeInsets.all(16.sp),
-//                   child: Row(
-//                     children: [
-//                       Expanded(
-//                           flex: 3,
-//                           child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               PTSerifText(
-//                                 text: AppConstants.sampleExpertise[index],
-//                                 style: TextStyle(
-//                                   fontWeight: FontWeight.w600,
-//                                   fontSize: 20.sp,
-//                                   fontStyle: FontStyle.italic,
-//                                 ),
-//                               ),
-//                               SizedBox(height: 16.h),
-//                               RobotoText(text: AppConstants.sampleNames[index]),
-//                             ],
-//                           )),
-//                       Column(
-//                         crossAxisAlignment: CrossAxisAlignment.end,
-//                         children: [
-//                           const Icon(Icons.bookmark_outline),
-//                           SizedBox(height: 8.h),
-//                           CacheNetworkImageWithPlaceholder(
-//                             height: 80.h,
-//                             imageUrl: AppConstants.sampleList[index],
-//                             width: 80.w,
-//                             borderRadius:
-//                                 BorderRadius.all(Radius.circular(12.sp)),
-//                           ),
-//                         ],
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             );
-//           },
-//         ),

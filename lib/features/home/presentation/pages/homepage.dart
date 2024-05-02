@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lawyearn/features/home/presentation/widgets/home_app_bar.dart';
-import 'package:lawyearn/features/home/presentation/widgets/home_feature_lawyers.dart';
+import 'package:lawyearn/features/home/presentation/widgets/featured_lawyers.dart';
 import 'package:lawyearn/features/home/presentation/widgets/lawyers_list.dart';
 
 class Homepage extends StatelessWidget {
