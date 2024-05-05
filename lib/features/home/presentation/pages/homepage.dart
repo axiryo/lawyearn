@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lawyearn/features/home/presentation/widgets/appointment_preview_card.dart';
 import 'package:lawyearn/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:lawyearn/features/home/presentation/widgets/featured_lawyers.dart';
 import 'package:lawyearn/features/home/presentation/widgets/lawyers_list.dart';
@@ -20,6 +21,7 @@ class Homepage extends StatelessWidget {
             //   padding: EdgeInsets.fromLTRB(16.sp, 16.sp, 16.sp, 0.sp),
             //   child: SearchTextField(onSearchChanged: (value) {}),
             // ),
+            AppointmentPreviewCard(),
             FeaturedLawyers(),
             LawyersList(),
           ],

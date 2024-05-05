@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
-import 'package:lawyearn/core/common/widgets/ptserif_text.dart';
 import 'package:lawyearn/core/common/widgets/roboto_text.dart';
 import 'package:lawyearn/core/constants/app_constants.dart';
 
@@ -74,11 +73,9 @@ class LawyersList extends StatelessWidget {
                             textOverflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
-                          PTSerifText(
+                          RobotoText(
                             text: AppConstants.sampleExpertise[index],
                             style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16.sp,
                               color: Theme.of(context).highlightColor,
                             ),
                           ),
