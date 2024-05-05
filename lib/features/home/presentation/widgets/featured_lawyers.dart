@@ -12,6 +12,7 @@ class FeaturedLawyers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     final ValueNotifier<int> currentPageIndex = ValueNotifier<int>(0);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +109,7 @@ class FeaturedLawyers extends StatelessWidget {
                   spacing: 10,
                   dotHeight: 8.h,
                   dotWidth: 8.h,
-                  activeDotColor: Theme.of(context).highlightColor,
+                  activeDotColor: colorScheme.secondaryContainer,
                 ),
               ),
             );

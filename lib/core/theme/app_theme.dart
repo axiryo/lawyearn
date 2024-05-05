@@ -18,44 +18,53 @@ class AppTheme {
   );
 
   static final lightThemeMode = ThemeData(
-    brightness: Brightness.light,
-    fontFamily: 'Rubik',
-    scaffoldBackgroundColor: const Color(0xFFF7F7F6),
-    appBarTheme: const AppBarTheme(color: Color(0xFFF7F7F6)),
-    primaryColor: const Color(0xFF070707),
-    shadowColor: Colors.transparent,
-    cardColor: AppPallete.whiteColor,
+    useMaterial3: true,
+    colorScheme: _lightColorScheme,
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppPallete.lightTextFieldFillColor,
       filled: true,
       hintStyle: const TextStyle(
-          fontWeight: FontWeight.normal, color: AppPallete.lightHintColor),
+        fontWeight: FontWeight.normal,
+        color: AppPallete.lightHintColor,
+      ),
       contentPadding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
       border: _lightBorder(),
       enabledBorder: _lightBorder(),
-      focusedBorder: _lightBorder(AppPallete.accentColor, 2),
-      errorBorder: _lightBorder(AppPallete.errorColor),
-    ),
-    chipTheme: ChipThemeData(
-      color: const MaterialStatePropertyAll(
-        Colors.green,
+      focusedBorder: _lightBorder(
+        AppPallete.accentColor,
+        2,
       ),
-      side: BorderSide.none,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50),
+      errorBorder: _lightBorder(
+        AppPallete.errorColor,
       ),
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
-        style: ButtonStyle(
-      overlayColor: MaterialStatePropertyAll(AppPallete.accentColor),
-    )),
+      style: ButtonStyle(
+        overlayColor: MaterialStatePropertyAll(Colors.grey),
+      ),
+    ),
     listTileTheme: const ListTileThemeData(
-      tileColor: AppPallete.whiteColor,
+      tileColor: Colors.white,
     ),
-    highlightColor: AppPallete.accentColor,
-    dividerTheme: const DividerThemeData(
-      color: Color(0xFF070707),
-    ),
-    disabledColor: AppPallete.lightDisabledPrimaryButton,
+    disabledColor: const Color(0xFF676766),
+  );
+
+  static const _lightColorScheme = ColorScheme(
+    brightness: Brightness.light,
+    primary: Color(0xFF070707),
+    onPrimary: Color(0xFFF7F7F6),
+    primaryContainer: Color(0xFFFFFFFF),
+    onPrimaryContainer: Color(0xFF070707),
+    secondaryContainer: Color(0xFF0384fe),
+    onSecondaryContainer: Color(0xFFF7F7F6),
+    secondary: Color(0xFF0384fe),
+    onSecondary: Color(0xFFF7F7F6),
+    error: Colors.redAccent,
+    onError: Color(0xFFF7F7F6),
+    background: Color(0xFFF7F7F6),
+    onBackground: Color(0xFF070707),
+    surface: Color(0xFFF7F7F6),
+    onSurface: Color(0xFF070707),
+    shadow: Color(0xFF707070),
   );
 }

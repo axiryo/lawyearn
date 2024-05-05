@@ -16,6 +16,7 @@ class AccountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     Profile? profile = getIt<GlobalUserProvider>().getUserProfile();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,13 +48,11 @@ class AccountCard extends StatelessWidget {
                           height: 24.h,
                           width: 24.w,
                           child: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
                               child: SvgPicture.asset(
-                                'assets/images/camera.svg',
-                                width: 12.w,
-                                height: 12.h,
-                              )),
+                            'assets/images/camera.svg',
+                            width: 12.w,
+                            height: 12.h,
+                          )),
                         ),
                       ),
                     ),
@@ -89,14 +88,14 @@ class AccountCard extends StatelessWidget {
         RobotoText(
           text: 'Tax lawyer at Netflix',
           style: TextStyle(
-            color: Theme.of(context).disabledColor,
+            color: colorScheme.shadow,
             fontSize: 16.sp,
           ),
         ),
         RobotoText(
           text: 'Pembo Makati City',
           style: TextStyle(
-            color: Theme.of(context).disabledColor,
+            color: colorScheme.shadow,
             fontSize: 16.sp,
           ),
         ),

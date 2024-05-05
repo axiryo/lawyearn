@@ -14,16 +14,15 @@ class CustomPrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return SizedBox(
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          foregroundColor: Theme.of(context).scaffoldBackgroundColor,
-          disabledBackgroundColor: Theme.of(context).disabledColor,
-          disabledForegroundColor: Theme.of(context).scaffoldBackgroundColor,
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
           fixedSize: Size(double.maxFinite.w, 44.h),
           textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(

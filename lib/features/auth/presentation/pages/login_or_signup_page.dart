@@ -80,15 +80,15 @@ class _LoginOrSignupPageState extends State<LoginOrSignupPage> {
                       ),
                       SizedBox(height: 8.h),
                       CustomPrimaryButton(
-                          buttonText: 'Continue with Email',
-                          onPressed: () {
-                            if (formKey.currentState!.validate()) {
-                              context.read<AuthBloc>().add(
-                                  AuthContinueWithEmail(
-                                      email: emailController.text.trim()));
-                              FocusScope.of(context).unfocus();
-                            }
-                          }),
+                        buttonText: 'Continue with Email',
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            context.read<AuthBloc>().add(AuthContinueWithEmail(
+                                email: emailController.text.trim()));
+                            FocusScope.of(context).unfocus();
+                          }
+                        },
+                      ),
                       const AuthOrDivider(),
                       const AuthSocialButtons(),
                       const AuthNeedHelpSignIn(),

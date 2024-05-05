@@ -11,6 +11,7 @@ class OverlayLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Stack(
       children: [
         child,
@@ -18,8 +19,8 @@ class OverlayLoader extends StatelessWidget {
           Material(
             color: Colors.black.withOpacity(0.5),
             child: Center(
-              child: LoadingAnimationWidget.stretchedDots(
-                color: Theme.of(context).highlightColor,
+              child: LoadingAnimationWidget.waveDots(
+                color: colorScheme.secondary,
                 size: 56.sp,
               ),
             ),

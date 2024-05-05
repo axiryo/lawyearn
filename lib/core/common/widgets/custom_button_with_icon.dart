@@ -6,15 +6,14 @@ class CustomButtonWithIcon extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget? prefixIcon;
   final Color? textColor;
-  final Color? buttonColor;
 
-  const CustomButtonWithIcon(
-      {super.key,
-      required this.buttonText,
-      this.onPressed,
-      this.prefixIcon,
-      this.textColor,
-      this.buttonColor});
+  const CustomButtonWithIcon({
+    super.key,
+    required this.buttonText,
+    this.onPressed,
+    this.prefixIcon,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +23,11 @@ class CustomButtonWithIcon extends StatelessWidget {
         elevation: 0,
         shadowColor: Colors.transparent,
         fixedSize: Size(double.maxFinite.w, 44.h),
-        foregroundColor: Theme.of(context).primaryColor,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        disabledBackgroundColor: Theme.of(context).disabledColor,
-        disabledForegroundColor: Theme.of(context).scaffoldBackgroundColor,
         textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.sp),
         ),
-        side: BorderSide(
-          color: Theme.of(context).primaryColor,
+        side: const BorderSide(
           width: 1,
         ),
       ),

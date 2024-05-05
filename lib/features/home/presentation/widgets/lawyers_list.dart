@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/cache_network_image.dart';
+import 'package:lawyearn/core/common/widgets/ptserif_text.dart';
 import 'package:lawyearn/core/common/widgets/roboto_text.dart';
 import 'package:lawyearn/core/constants/app_constants.dart';
 
@@ -11,6 +12,7 @@ class LawyersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,10 +75,10 @@ class LawyersList extends StatelessWidget {
                             textOverflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
-                          RobotoText(
+                          PTSerifText(
                             text: AppConstants.sampleExpertise[index],
                             style: TextStyle(
-                              color: Theme.of(context).highlightColor,
+                              color: colorScheme.secondary,
                             ),
                           ),
                         ],

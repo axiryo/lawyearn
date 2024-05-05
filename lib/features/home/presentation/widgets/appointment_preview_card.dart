@@ -7,6 +7,7 @@ class AppointmentPreviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: EdgeInsets.all(16.sp),
       child: Column(
@@ -15,7 +16,7 @@ class AppointmentPreviewCard extends StatelessWidget {
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.sp),
-              color: Theme.of(context).highlightColor,
+              color: colorScheme.secondary,
             ),
             child: Column(
               children: [
@@ -25,7 +26,7 @@ class AppointmentPreviewCard extends StatelessWidget {
                     child: RobotoText(
                       text: 'No appointment',
                       style: TextStyle(
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                        color: colorScheme.onSecondary,
                       ),
                     ),
                   ),
@@ -37,7 +38,7 @@ class AppointmentPreviewCard extends StatelessWidget {
             height: 8.h,
             margin: EdgeInsets.symmetric(horizontal: 12.sp),
             decoration: BoxDecoration(
-              color: Theme.of(context).highlightColor.withOpacity(0.25),
+              color: colorScheme.secondary.withOpacity(0.25),
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(8.sp),
               ),
@@ -47,7 +48,7 @@ class AppointmentPreviewCard extends StatelessWidget {
             height: 8.h,
             margin: EdgeInsets.symmetric(horizontal: 24.sp),
             decoration: BoxDecoration(
-              color: Theme.of(context).highlightColor.withOpacity(0.15),
+              color: colorScheme.secondary.withOpacity(0.15),
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(8.sp),
               ),

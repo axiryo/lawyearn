@@ -35,7 +35,6 @@ class CacheNetworkImageWithPlaceholder extends StatelessWidget {
         errorWidget: (context, url, error) => const Icon(
           Icons.error,
           size: 100,
-          color: Colors.red,
         ),
         placeholder: (context, url) {
           return const Text('AT');
