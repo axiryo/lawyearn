@@ -99,12 +99,15 @@ class AccountCard extends StatelessWidget {
             fontSize: 16.sp,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         CustomPrimaryButton(
           buttonText: 'Edit',
           onPressed: () => log(profile!.name),
           height: 40.h,
         ),
+        // SizedBox(height: 16.h),
+        // const InviteFriends(),
+        // SizedBox(height: 16.h),
       ],
     );
   }

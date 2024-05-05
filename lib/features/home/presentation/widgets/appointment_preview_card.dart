@@ -11,7 +11,16 @@ class AppointmentPreviewCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(16.sp),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          RobotoText(
+            text: 'Appointments',
+            style: TextStyle(
+              fontSize: 20.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(height: 8.h),
           Container(
             padding: EdgeInsets.all(16.sp),
             decoration: BoxDecoration(
@@ -24,7 +33,7 @@ class AppointmentPreviewCard extends StatelessWidget {
                   height: 100,
                   child: Center(
                     child: RobotoText(
-                      text: 'No appointment',
+                      text: 'No appointment yet',
                       style: TextStyle(
                         color: colorScheme.onSecondary,
                       ),
