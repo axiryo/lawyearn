@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
 import 'package:lawyearn/core/common/widgets/overlay_loader.dart';
-import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/utils/show_snackbar.dart';
 import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
 import 'package:lawyearn/core/common/widgets/custom_text_field.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lawyearn/features/home/presentation/pages/homepage.dart';
-import 'package:lawyearn/service_locator.dart';
 
 class SignupPage extends StatefulWidget {
   static route(String email) => MaterialPageRoute(
@@ -44,8 +41,6 @@ class _SignupPageState extends State<SignupPage> {
           showSnackBar(context, state.message);
         }
         if (state is AuthSuccess) {
-          getIt<GlobalUserProvider>().setUserProfile(
-              (context.read<AppUserCubit>().state as AppUserLoggedIn).profile);
           Navigator.pushAndRemoveUntil(
             context,
             Homepage.route(),
