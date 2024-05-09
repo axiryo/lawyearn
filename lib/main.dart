@@ -8,6 +8,7 @@ import 'package:lawyearn/core/theme/bloc/theme_state.dart';
 import 'package:lawyearn/features/account_settings/presentation/bloc/account_settings_bloc.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:lawyearn/features/auth/presentation/pages/login_or_signup_page.dart';
+import 'package:lawyearn/features/edit_profile.dart/presentation/bloc/edit_profile_bloc.dart';
 import 'package:lawyearn/features/home/presentation/bloc/home_bloc.dart';
 import 'package:lawyearn/features/home/presentation/pages/homepage.dart';
 import 'package:lawyearn/service_locator.dart';
@@ -32,6 +33,9 @@ void main() async {
       BlocProvider(
         create: (context) => getIt<AccountSettingsBloc>(),
       ),
+      BlocProvider(
+        create: (context) => getIt<EditProfileBloc>(),
+      ),
     ],
     child: const MainApp(),
   ));
@@ -48,7 +52,7 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    context.read<AuthBloc>().add(AuthIsUserLoggedIn());
+    context.read<AuthBloc>().add(const AuthIsUserLoggedIn());
   }
 
   @override

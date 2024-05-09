@@ -1,7 +1,12 @@
 part of 'auth_bloc.dart';
 
 @immutable
-sealed class AuthEvent {}
+sealed class AuthEvent extends Equatable {
+  const AuthEvent();
+
+  @override
+  List<Object> get props => [];
+}
 
 final class AuthSignUpWithEmailEvent extends AuthEvent {
   final String firstName;
@@ -10,7 +15,7 @@ final class AuthSignUpWithEmailEvent extends AuthEvent {
   final String email;
   final String password;
 
-  AuthSignUpWithEmailEvent({
+  const AuthSignUpWithEmailEvent({
     required this.firstName,
     this.middleName,
     required this.lastName,
@@ -22,14 +27,16 @@ final class AuthSignUpWithEmailEvent extends AuthEvent {
 final class AuthContinueWithEmail extends AuthEvent {
   final String email;
 
-  AuthContinueWithEmail({required this.email});
+  const AuthContinueWithEmail({required this.email});
 }
 
 final class AuthLoginWithEmail extends AuthEvent {
   final String email;
   final String password;
 
-  AuthLoginWithEmail({required this.email, required this.password});
+  const AuthLoginWithEmail({required this.email, required this.password});
 }
 
-final class AuthIsUserLoggedIn extends AuthEvent {}
+final class AuthIsUserLoggedIn extends AuthEvent {
+  const AuthIsUserLoggedIn();
+}

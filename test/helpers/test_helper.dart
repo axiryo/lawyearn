@@ -1,5 +1,5 @@
 import 'package:mockito/annotations.dart';
-import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
+import 'package:lawyearn/features/auth/domain/repositories/auth_repository.dart';
 import 'package:http/http.dart' as http;
 
 @GenerateMocks(

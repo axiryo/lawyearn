@@ -5,17 +5,22 @@ import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/features/account_settings/data/data_sources/account_settings_remote_data_source.dart';
 import 'package:lawyearn/features/account_settings/data/repositories/account_settings_repository_impl.dart';
-import 'package:lawyearn/features/account_settings/domain/repository/account_settings_repository.dart';
+import 'package:lawyearn/features/account_settings/domain/repositories/account_settings_repository.dart';
 import 'package:lawyearn/features/account_settings/domain/usecases/account_settings_logout.dart';
 import 'package:lawyearn/features/account_settings/presentation/bloc/account_settings_bloc.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:lawyearn/features/auth/data/repositories/auth_repository_impl.dart';
-import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
+import 'package:lawyearn/features/auth/domain/repositories/auth_repository.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_continue_with_email.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_current_user.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_login_with_email.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_sign_up_usecase.dart';
 import 'package:lawyearn/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:lawyearn/features/edit_profile.dart/data/data_sources/edit_profile_remote_data_source.dart';
+import 'package:lawyearn/features/edit_profile.dart/data/repostories/edit_profile_repository_impl.dart';
+import 'package:lawyearn/features/edit_profile.dart/domain/repositories/edit_profile_repository.dart';
+import 'package:lawyearn/features/edit_profile.dart/domain/usecases/edit_profile_update_profile.dart';
+import 'package:lawyearn/features/edit_profile.dart/presentation/bloc/edit_profile_bloc.dart';
 import 'package:lawyearn/features/home/presentation/bloc/home_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -34,6 +39,7 @@ Future<void> setupLocator() async {
   _initAuth();
   _initTheme();
   _initAccountSettings();
+  _initEditProfile();
 }
 
 void _initAuth() {
@@ -99,6 +105,30 @@ void _initAccountSettings() {
     ..registerLazySingleton(
       () => AccountSettingsBloc(
         accountSettingsLogoutUsecase: getIt(),
+      ),
+    );
+}
+
+void _initEditProfile() {
+  getIt
+    ..registerFactory<EditProfileDataSource>(
+      () => EditProfileDataSourceImpl(
+        getIt(),
+      ),
+    )
+    ..registerFactory<EditProfileRepository>(
+      () => EditProfileRepositoryImpl(
+        getIt(),
+      ),
+    )
+    ..registerFactory(
+      () => EditProfileUpdateProfileUseCase(
+        getIt(),
+      ),
+    )
+    ..registerLazySingleton(
+      () => EditProfileBloc(
+        editProfileUpdateProfileUseCase: getIt(),
       ),
     );
 }

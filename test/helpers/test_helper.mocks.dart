@@ -11,7 +11,7 @@ import 'package:fpdart/fpdart.dart' as _i5;
 import 'package:http/http.dart' as _i2;
 import 'package:lawyearn/core/common/entities/profile.dart' as _i7;
 import 'package:lawyearn/core/error/failure.dart' as _i6;
-import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart'
+import 'package:lawyearn/features/auth/domain/repositories/auth_repository.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i8;

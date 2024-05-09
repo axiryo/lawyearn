@@ -14,9 +14,9 @@ class ProfileModel extends Profile {
     return ProfileModel(
       id: map['id'] ?? '',
       email: map['email'] ?? '',
-      firstName: map['firstName'] ?? '',
-      middleName: map['middleName'] ?? '',
-      lastName: map['lastName'] ?? '',
+      firstName: map['first_name'] ?? '',
+      middleName: map['middle_name'] ?? '',
+      lastName: map['last_name'] ?? '',
       isEmailVerified: map['isEmailVerified'] ?? false,
     );
   }
