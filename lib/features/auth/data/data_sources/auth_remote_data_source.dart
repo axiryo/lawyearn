@@ -1,11 +1,10 @@
 import 'package:lawyearn/core/error/exception.dart';
-import 'package:lawyearn/features/auth/data/models/profile_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract interface class AuthRemoteDataSource {
   Session? get currentUserSession;
 
-  Future<ProfileModel> signUpWithEmail({
+  Future<User> signUpWithEmail({
     required String name,
     required String email,
     required String password,
@@ -15,12 +14,12 @@ abstract interface class AuthRemoteDataSource {
     required String email,
   });
 
-  Future<ProfileModel> loginWithEmail({
+  Future<User> loginWithEmail({
     required String email,
     required String password,
   });
 
-  Future<ProfileModel?> getCurrentUserdata();
+  Future<User?> getCurrentUserdata();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -32,7 +31,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Session? get currentUserSession => supabaseClient.auth.currentSession;
 
   @override
-  Future<ProfileModel> signUpWithEmail({
+  Future<User> signUpWithEmail({
     required String name,
     required String email,
     required String password,
@@ -48,10 +47,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.user == null) {
         throw const ServerException('User is null!');
       }
-      return ProfileModel.fromMap(response.user!.toJson()).copyWith(
-        name: currentUserSession!.user.userMetadata!['name'],
-        isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
-      );
+      return User.fromJson(response.user!.toJson())!;
+      // return ProfileModel.fromMap(response.user!.toJson()).copyWith(
+      //   name: currentUserSession!.user.userMetadata!['name'],
+      //   isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
+      // );
     } catch (e) {
       throw ServerException(e.toString());
     }
@@ -72,7 +72,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<ProfileModel> loginWithEmail(
+  Future<User> loginWithEmail(
       {required String email, required String password}) async {
     try {
       final response = await supabaseClient.auth.signInWithPassword(
@@ -82,24 +82,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       if (response.user == null) {
         throw const ServerException('User is null!');
       }
-      return ProfileModel.fromMap(response.user!.toJson()).copyWith(
-        name: currentUserSession!.user.userMetadata!['name'],
-        isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
-      );
+      return User.fromJson(response.user!.toJson())!;
+      // return ProfileModel.fromMap(response.user!.toJson()).copyWith(
+      //   name: currentUserSession!.user.userMetadata!['name'],
+      //   isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
+      // );
     } catch (e) {
       throw ServerException(e.toString());
     }
   }
 
   @override
-  Future<ProfileModel?> getCurrentUserdata() async {
+  Future<User?> getCurrentUserdata() async {
     try {
       if (currentUserSession != null) {
-        final userData = await supabaseClient
-            .from('profiles')
-            .select()
-            .eq('id', currentUserSession!.user.id);
-        return ProfileModel.fromMap(userData.first);
+        // final userData = await supabaseClient
+        //     .from('profiles')
+        //     .select()
+        //     .eq('id', currentUserSession!.user.id);
+        // return ProfileModel.fromMap(userData.first);
+        return User.fromJson(currentUserSession!.user.toJson());
       }
       return null;
     } catch (e) {

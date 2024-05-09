@@ -1,15 +1,15 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/error/failure.dart';
 import 'package:lawyearn/core/usecase/usecase.dart';
 import 'package:lawyearn/features/auth/domain/repository/auth_repository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class AuthLoginWithEmailUseCase implements UseCase<Profile, UserLoginParams> {
+class AuthLoginWithEmailUseCase implements UseCase<User, UserLoginParams> {
   final AuthRepository authRepository;
 
   AuthLoginWithEmailUseCase(this.authRepository);
   @override
-  Future<Either<Failure, Profile>> call(UserLoginParams params) async {
+  Future<Either<Failure, User>> call(UserLoginParams params) async {
     return await authRepository.loginWithEmail(
         email: params.email, password: params.password);
   }

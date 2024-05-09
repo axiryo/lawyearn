@@ -1,8 +1,8 @@
-import 'package:lawyearn/core/common/entities/profile.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class GlobalUserProvider {
   static final GlobalUserProvider _instance = GlobalUserProvider._internal();
-  Profile? _userProfile;
+  User? _userProfile;
 
   factory GlobalUserProvider() {
     return _instance;
@@ -10,11 +10,11 @@ class GlobalUserProvider {
 
   GlobalUserProvider._internal();
 
-  void setUserProfile(Profile profile) {
+  void setUserProfile(User profile) {
     _userProfile = profile;
   }
 
-  Profile? getUserProfile() {
+  User? getUserProfile() {
     return _userProfile;
   }
 

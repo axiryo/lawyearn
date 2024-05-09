@@ -2,17 +2,17 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/theme/app_palette.dart';
 import 'package:lawyearn/service_locator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DropFilterContainer extends StatelessWidget {
   const DropFilterContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Profile? profile = getIt<GlobalUserProvider>().getUserProfile();
+    User? profile = getIt<GlobalUserProvider>().getUserProfile();
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       child: BackdropFilter(
@@ -38,7 +38,7 @@ class DropFilterContainer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  profile!.name,
+                  profile!.userMetadata!['name'],
                 ),
               ],
             ),

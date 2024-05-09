@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
-import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/usecase/usecase.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_continue_with_email.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_current_user.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_login_with_email.dart';
 import 'package:lawyearn/features/auth/domain/usecases/auth_sign_up_usecase.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -80,7 +80,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  void _emitAuthSuccess(Profile profile, Emitter<AuthState> emit) {
+  void _emitAuthSuccess(User profile, Emitter<AuthState> emit) {
     _appUserCubit.updateUser(profile);
     emit(AuthSuccess(profile: profile));
   }

@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/error/exception.dart';
 import 'package:lawyearn/core/error/failure.dart';
 import 'package:lawyearn/features/auth/data/data_sources/auth_remote_data_source.dart';
@@ -12,7 +11,7 @@ class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(this.authRemoteDataSource);
 
   @override
-  Future<Either<Failure, Profile>> currentUser() async {
+  Future<Either<Failure, sb.User>> currentUser() async {
     try {
       final user = await authRemoteDataSource.getCurrentUserdata();
       if (user == null) {
@@ -26,7 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Profile>> signUpWithEmail(
+  Future<Either<Failure, sb.User>> signUpWithEmail(
       {required String name,
       required String email,
       required String password}) async {
@@ -56,7 +55,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, Profile>> loginWithEmail(
+  Future<Either<Failure, sb.User>> loginWithEmail(
       {required String email, required String password}) async {
     try {
       final user = await authRemoteDataSource.loginWithEmail(

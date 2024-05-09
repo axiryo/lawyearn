@@ -28,7 +28,7 @@ final class AuthEmailNotExist extends AuthState {
 }
 
 final class AuthSuccess extends AuthState {
-  final Profile profile;
+  final User profile;
 
   const AuthSuccess({required this.profile});
 }
