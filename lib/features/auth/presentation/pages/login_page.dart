@@ -5,6 +5,7 @@ import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
 import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
 import 'package:lawyearn/core/common/widgets/custom_text_field.dart';
+import 'package:lawyearn/core/common/widgets/heading_with_subtitle.dart';
 import 'package:lawyearn/core/common/widgets/overlay_loader.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/utils/show_snackbar.dart';
@@ -65,19 +66,9 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Center(
-                      child: Text(
-                        'Enter your password',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 26.sp,
-                          height: 1.h,
-                          wordSpacing: 0.8.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
+                    const HeadingWithSubtitle(
+                      heading: 'Enter your password',
                     ),
-                    SizedBox(height: 16.h),
                     CustomTextField(
                       hintText: 'Password',
                       controller: passwordController,

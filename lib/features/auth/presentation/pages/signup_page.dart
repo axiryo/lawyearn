@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
+import 'package:lawyearn/core/common/widgets/heading_with_subtitle.dart';
 import 'package:lawyearn/core/common/widgets/overlay_loader.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/utils/show_snackbar.dart';
@@ -71,22 +72,9 @@ class _SignupPageState extends State<SignupPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Center(
-                      child: Text(
-                        'Create new account',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 26.sp,
-                          height: 1.h,
-                          wordSpacing: 0.8.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-                    const Text(
-                      'Information provided below must be real.',
-                      textAlign: TextAlign.left,
+                    const HeadingWithSubtitle(
+                      heading: 'Create new account',
+                      subtitle: 'Information provided below must be real.',
                     ),
                     Text(
                       'You will be creating an account for: ${widget.email}',
