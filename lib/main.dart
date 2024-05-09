@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/cubits/app_user_cubit/app_user_cubit.dart';
+import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/theme/bloc/theme_bloc.dart';
 import 'package:lawyearn/core/theme/bloc/theme_state.dart';
 import 'package:lawyearn/features/account_settings/presentation/bloc/account_settings_bloc.dart';
@@ -66,6 +67,9 @@ class _MainAppState extends State<MainApp> {
                 },
                 builder: (context, isLoggedIn) {
                   if (isLoggedIn) {
+                    getIt<GlobalUserProvider>().setUserProfile(
+                        (context.read<AppUserCubit>().state as AppUserLoggedIn)
+                            .profile);
                     return const Homepage();
                   }
                   return const LoginOrSignupPage();

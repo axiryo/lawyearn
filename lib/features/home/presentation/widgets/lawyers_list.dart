@@ -20,7 +20,7 @@ class LawyersList extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 16.sp),
           child: RobotoText(
-            text: 'Nearby Lawyers',
+            text: 'Lawyers near you',
             style: TextStyle(
               fontSize: 20.sp,
               fontWeight: FontWeight.w500,

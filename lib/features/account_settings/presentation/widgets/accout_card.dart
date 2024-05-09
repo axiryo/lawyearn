@@ -4,11 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
 import 'package:lawyearn/core/common/widgets/roboto_text.dart';
 import 'package:lawyearn/core/constants/app_constants.dart';
+import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/service_locator.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AccountCard extends StatelessWidget {
   const AccountCard({super.key});
@@ -16,7 +17,7 @@ class AccountCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    SupabaseClient sClient = getIt<SupabaseClient>();
+    Profile? profile = getIt<GlobalUserProvider>().getUserProfile();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -98,15 +99,12 @@ class AccountCard extends StatelessWidget {
             fontSize: 16.sp,
           ),
         ),
-        SizedBox(height: 16.h),
+        const SizedBox(height: 16),
         CustomPrimaryButton(
           buttonText: 'Edit',
-          onPressed: () => log(sClient.auth.currentUser!.userMetadata!['name']),
+          onPressed: () => log(profile!.name),
           height: 40.h,
         ),
-        // SizedBox(height: 16.h),
-        // const InviteFriends(),
-        // SizedBox(height: 16.h),
       ],
     );
   }
