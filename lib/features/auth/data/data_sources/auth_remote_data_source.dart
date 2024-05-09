@@ -6,7 +6,9 @@ abstract interface class AuthRemoteDataSource {
   Session? get currentUserSession;
 
   Future<ProfileModel> signUpWithEmail({
-    required String name,
+    required String firstName,
+    String? middleName,
+    required String lastName,
     required String email,
     required String password,
   });
@@ -32,24 +34,29 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Session? get currentUserSession => supabaseClient.auth.currentSession;
 
   @override
-  Future<ProfileModel> signUpWithEmail({
-    required String name,
-    required String email,
-    required String password,
-  }) async {
+  Future<ProfileModel> signUpWithEmail(
+      {required String firstName,
+      String? middleName,
+      required String lastName,
+      required String email,
+      required String password}) async {
     try {
       final response = await supabaseClient.auth.signUp(
         email: email,
         password: password,
         data: {
-          'name': name,
+          'first_name': firstName,
+          'middle_name': middleName,
+          'last_name': lastName,
         },
       );
       if (response.user == null) {
         throw const ServerException('User is null!');
       }
       return ProfileModel.fromMap(response.user!.toJson()).copyWith(
-        name: currentUserSession!.user.userMetadata!['name'],
+        firstName: currentUserSession!.user.userMetadata!['first_name'],
+        middleName: currentUserSession!.user.userMetadata!['middle_name'],
+        lastName: currentUserSession!.user.userMetadata!['last_name'],
         isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
       );
     } catch (e) {
@@ -83,7 +90,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw const ServerException('User is null!');
       }
       return ProfileModel.fromMap(response.user!.toJson()).copyWith(
-        name: currentUserSession!.user.userMetadata!['name'],
+        firstName: currentUserSession!.user.userMetadata!['first_name'],
+        middleName: currentUserSession!.user.userMetadata!['middle_name'],
+        lastName: currentUserSession!.user.userMetadata!['last_name'],
         isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
       );
     } catch (e) {

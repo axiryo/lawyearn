@@ -4,7 +4,9 @@ import 'package:lawyearn/core/error/failure.dart';
 
 abstract interface class AuthRepository {
   Future<Either<Failure, Profile>> signUpWithEmail({
-    required String name,
+    required String firstName,
+    String? middleName,
+    required String lastName,
     required String email,
     required String password,
   });

@@ -38,7 +38,7 @@ class DropFilterContainer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  profile!.name,
+                  profile!.firstName,
                 ),
               ],
             ),

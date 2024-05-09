@@ -25,13 +25,17 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController middleNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    nameController.dispose();
+    firstNameController.dispose();
+    middleNameController.dispose();
+    lastNameController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -90,8 +94,26 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     SizedBox(height: 8.h),
                     CustomTextField(
-                      hintText: 'Name',
-                      controller: nameController,
+                      hintText: 'First name',
+                      controller: firstNameController,
+                    ),
+                    SizedBox(height: 8.h),
+                    CustomTextField(
+                      hintText: 'Middle name',
+                      controller: middleNameController,
+                      validator: (value) {
+                        if (value != null && value.isNotEmpty) {
+                          if (value.length < 2) {
+                            return 'Middle name must be at least 2 characters long.';
+                          }
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    CustomTextField(
+                      hintText: 'Last name',
+                      controller: lastNameController,
                     ),
                     SizedBox(height: 8.h),
                     CustomTextField(
@@ -106,7 +128,10 @@ class _SignupPageState extends State<SignupPage> {
                           if (formKey.currentState!.validate()) {
                             context.read<AuthBloc>().add(
                                   AuthSignUpWithEmailEvent(
-                                    name: nameController.text.trim(),
+                                    firstName: firstNameController.text.trim(),
+                                    middleName:
+                                        middleNameController.text.trim(),
+                                    lastName: lastNameController.text.trim(),
                                     email: widget.email.trim(),
                                     password: passwordController.text.trim(),
                                   ),

@@ -41,7 +41,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> authSignUpWithEmailEvent(
       AuthSignUpWithEmailEvent event, Emitter<AuthState> emit) async {
     var response = await _authSignUpUseCase(UserSignUpParameters(
-        name: event.name, email: event.email, password: event.password));
+      firstName: event.firstName,
+      middleName: event.middleName,
+      lastName: event.lastName,
+      email: event.email,
+      password: event.password,
+    ));
 
     response.fold(
       (l) => emit(AuthError(l.message)),

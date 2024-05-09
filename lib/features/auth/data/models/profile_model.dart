@@ -4,7 +4,9 @@ class ProfileModel extends Profile {
   const ProfileModel({
     required super.id,
     required super.email,
-    required super.name,
+    required super.firstName,
+    super.middleName,
+    required super.lastName,
     required super.isEmailVerified,
   });
 
@@ -12,7 +14,9 @@ class ProfileModel extends Profile {
     return ProfileModel(
       id: map['id'] ?? '',
       email: map['email'] ?? '',
-      name: map['name'] ?? '',
+      firstName: map['firstName'] ?? '',
+      middleName: map['middleName'] ?? '',
+      lastName: map['lastName'] ?? '',
       isEmailVerified: map['isEmailVerified'] ?? false,
     );
   }
@@ -20,13 +24,17 @@ class ProfileModel extends Profile {
   ProfileModel copyWith({
     String? id,
     String? email,
-    String? name,
+    String? firstName,
+    String? middleName,
+    String? lastName,
     bool? isEmailVerified,
   }) {
     return ProfileModel(
       id: id ?? this.id,
       email: email ?? this.email,
-      name: name ?? this.name,
+      firstName: firstName ?? this.firstName,
+      middleName: middleName,
+      lastName: lastName ?? this.lastName,
       isEmailVerified: isEmailVerified ?? this.isEmailVerified,
     );
   }

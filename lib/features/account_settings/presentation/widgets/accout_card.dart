@@ -9,6 +9,7 @@ import 'package:lawyearn/core/common/widgets/custom_button.dart';
 import 'package:lawyearn/core/common/widgets/roboto_text.dart';
 import 'package:lawyearn/core/constants/app_constants.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
+import 'package:lawyearn/features/edit_profile.dart/presentation/pages/edit_profile_page.dart';
 import 'package:lawyearn/service_locator.dart';
 
 class AccountCard extends StatelessWidget {
@@ -79,7 +80,7 @@ class AccountCard extends StatelessWidget {
           ],
         ),
         RobotoText(
-          text: 'Allison Williams',
+          text: '${profile!.firstName} ${profile.lastName}',
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,
@@ -102,7 +103,7 @@ class AccountCard extends StatelessWidget {
         const SizedBox(height: 16),
         CustomPrimaryButton(
           buttonText: 'Edit',
-          onPressed: () => log(profile!.name),
+          onPressed: () => Navigator.of(context).push(EditProfilePage.route()),
           height: 40.h,
         ),
       ],

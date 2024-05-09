@@ -27,12 +27,19 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, Profile>> signUpWithEmail(
-      {required String name,
+      {required String firstName,
+      String? middleName,
+      required String lastName,
       required String email,
       required String password}) async {
     try {
       final user = await authRemoteDataSource.signUpWithEmail(
-          name: name, email: email, password: password);
+        firstName: firstName,
+        middleName: middleName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      );
       return right(user);
     } on sb.AuthException catch (e) {
       return left(Failure(e.message));
