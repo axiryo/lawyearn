@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 class Profile extends Equatable {
@@ -8,6 +7,7 @@ class Profile extends Equatable {
   final String? middleName;
   final String lastName;
   final bool isEmailVerified;
+  final String? avatarUrl;
 
   const Profile({
     required this.id,
@@ -16,6 +16,7 @@ class Profile extends Equatable {
     this.middleName,
     required this.lastName,
     required this.isEmailVerified,
+    this.avatarUrl,
   });
 
   @override

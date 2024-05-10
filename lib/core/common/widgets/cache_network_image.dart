@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CacheNetworkImageWithPlaceholder extends StatelessWidget {
   final String imageUrl;
@@ -9,6 +10,7 @@ class CacheNetworkImageWithPlaceholder extends StatelessWidget {
   final Duration fadeDuration;
   final BorderRadius borderRadius;
   final Color? color;
+  final String? initials;
 
   const CacheNetworkImageWithPlaceholder({
     super.key,
@@ -19,6 +21,7 @@ class CacheNetworkImageWithPlaceholder extends StatelessWidget {
     this.fadeDuration = const Duration(milliseconds: 1),
     this.borderRadius = BorderRadius.zero,
     this.color,
+    this.initials,
   });
 
   @override
@@ -32,13 +35,19 @@ class CacheNetworkImageWithPlaceholder extends StatelessWidget {
         fit: fit,
         maxHeightDiskCache: 900,
         maxWidthDiskCache: 675,
-        errorWidget: (context, url, error) => const Icon(
-          Icons.error,
-          size: 100,
+        errorWidget: (context, url, error) => Container(
+          color: Theme.of(context).colorScheme.secondaryContainer,
+          child: Center(
+            child: Text(
+              initials!,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
+                fontSize: 48.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         ),
-        placeholder: (context, url) {
-          return const Text('AT');
-        },
       ),
     );
   }

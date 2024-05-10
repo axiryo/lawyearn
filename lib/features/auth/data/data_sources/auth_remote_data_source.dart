@@ -94,6 +94,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         middleName: currentUserSession!.user.userMetadata!['middle_name'],
         lastName: currentUserSession!.user.userMetadata!['last_name'],
         isEmailVerified: currentUserSession!.user.emailConfirmedAt!.isNotEmpty,
+        avatarUrl: currentUserSession!.user.userMetadata!['avatar_url'],
       );
     } catch (e) {
       throw ServerException(e.toString());

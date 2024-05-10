@@ -25,6 +25,9 @@ class UpdateProfileParams {
   final String? middleName;
   final String lastName;
 
-  UpdateProfileParams(
-      {required this.firstName, this.middleName, required this.lastName});
+  UpdateProfileParams({
+    required this.firstName,
+    this.middleName,
+    required this.lastName,
+  });
 }

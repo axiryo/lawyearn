@@ -8,6 +8,7 @@ class ProfileModel extends Profile {
     super.middleName,
     required super.lastName,
     required super.isEmailVerified,
+    super.avatarUrl,
   });
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
@@ -18,6 +19,7 @@ class ProfileModel extends Profile {
       middleName: map['middle_name'] ?? '',
       lastName: map['last_name'] ?? '',
       isEmailVerified: map['isEmailVerified'] ?? false,
+      avatarUrl: map['avatar_url'] ?? '',
     );
   }
 
@@ -28,6 +30,7 @@ class ProfileModel extends Profile {
     String? middleName,
     String? lastName,
     bool? isEmailVerified,
+    String? avatarUrl,
   }) {
     return ProfileModel(
       id: id ?? this.id,
@@ -36,6 +39,7 @@ class ProfileModel extends Profile {
       middleName: middleName,
       lastName: lastName ?? this.lastName,
       isEmailVerified: isEmailVerified ?? this.isEmailVerified,
+      avatarUrl: avatarUrl ?? this.avatarUrl,
     );
   }
 }

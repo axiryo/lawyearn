@@ -1,19 +1,36 @@
 import 'dart:developer';
+import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lawyearn/core/common/entities/profile.dart';
 import 'package:lawyearn/core/common/widgets/custom_button.dart';
+import 'package:lawyearn/core/common/widgets/display_avatar.dart';
 import 'package:lawyearn/core/common/widgets/roboto_text.dart';
-import 'package:lawyearn/core/constants/app_constants.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
+import 'package:lawyearn/core/utils/pick_image.dart';
 import 'package:lawyearn/features/edit_profile.dart/presentation/pages/edit_profile_page.dart';
 import 'package:lawyearn/service_locator.dart';
 
-class AccountCard extends StatelessWidget {
+class AccountCard extends StatefulWidget {
   const AccountCard({super.key});
+
+  @override
+  State<AccountCard> createState() => _AccountCardState();
+}
+
+class _AccountCardState extends State<AccountCard> {
+  File? image;
+
+  void selectImage() async {
+    final pickedImage = await pickImage();
+    if (pickedImage != null) {
+      setState(() {
+        image = pickedImage;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +49,25 @@ class AccountCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Stack(children: [
-                    SizedBox(
-                      height: 120.h,
-                      width: 120.w,
-                      child: const CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider(
-                            AppConstants.sampleProfilePic),
-                      ),
-                    ),
+                    image == null
+                        ? const DisplayAvatar()
+                        : SizedBox(
+                            width: 120,
+                            height: 120,
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100.sp)),
+                              child: Image.file(
+                                image!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                     Positioned(
                       bottom: -2.sp,
                       right: -4.sp,
                       child: IconButton(
-                        onPressed: () => log('camera clicked'),
+                        onPressed: () => selectImage(),
                         icon: SizedBox(
                           height: 24.h,
                           width: 24.w,

@@ -26,7 +26,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
   late TextEditingController firstNameController;
   late TextEditingController middleNameController;
   late TextEditingController lastNameController;
+  bool isFirstNameChanged = false;
+  bool isMiddleNameChanged = false;
+  bool isLastNameChanged = false;
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    firstNameController = TextEditingController(text: profile!.firstName);
+    middleNameController = TextEditingController(text: profile!.middleName);
+    lastNameController = TextEditingController(text: profile!.lastName);
+    isFirstNameChanged = profile!.firstName != firstNameController.text;
+    isMiddleNameChanged = profile!.middleName != middleNameController.text;
+    isLastNameChanged = profile!.lastName != lastNameController.text;
+  }
 
   @override
   void dispose() {
@@ -38,9 +52,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    firstNameController = TextEditingController(text: profile!.firstName);
-    middleNameController = TextEditingController(text: profile!.middleName);
-    lastNameController = TextEditingController(text: profile!.lastName);
     return BlocConsumer<EditProfileBloc, EditProfileState>(
       listener: (context, state) {
         if (state is EditProfileSuccess) {
@@ -69,6 +80,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           heading: 'Edit Personal Information',
                           subtitle: 'Information provided below must be real.',
                         ),
+                        SizedBox(height: 8.h),
                         CustomTextField(
                           hintText: 'First name',
                           controller: firstNameController,
@@ -93,22 +105,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                         SizedBox(height: 8.h),
                         CustomPrimaryButton(
-                            buttonText: 'Save',
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                context.read<EditProfileBloc>().add(
-                                      EditProfileSave(
-                                        firstName:
-                                            firstNameController.text.trim(),
-                                        middleName:
-                                            middleNameController.text.trim(),
-                                        lastName:
-                                            lastNameController.text.trim(),
-                                      ),
-                                    );
-                                FocusScope.of(context).unfocus();
-                              }
-                            }),
+                          buttonText: 'Save',
+                          onPressed: () {
+                            if (formKey.currentState!.validate()
+                                // &&
+                                // (isFirstNameChanged ||
+                                //     isMiddleNameChanged ||
+                                //     isLastNameChanged ||
+                                //     image != null)
+                                ) {
+                              context.read<EditProfileBloc>().add(
+                                    EditProfileSave(
+                                      firstName:
+                                          firstNameController.text.trim(),
+                                      middleName:
+                                          middleNameController.text.trim(),
+                                      lastName: lastNameController.text.trim(),
+                                    ),
+                                  );
+                              FocusScope.of(context).unfocus();
+                            }
+                          },
+                        ),
                       ],
                     ),
                   ),

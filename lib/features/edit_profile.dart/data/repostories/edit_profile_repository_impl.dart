@@ -10,10 +10,11 @@ class EditProfileRepositoryImpl implements EditProfileRepository {
 
   EditProfileRepositoryImpl(this.editProfileDataSource);
   @override
-  Future<Either<Failure, Profile>> updateProfile(
-      {required String firstName,
-      String? middleName,
-      required String lastName}) async {
+  Future<Either<Failure, Profile>> updateProfile({
+    required String firstName,
+    String? middleName,
+    required String lastName,
+  }) async {
     try {
       final user = await editProfileDataSource.updateProfile(
         firstName: firstName,
