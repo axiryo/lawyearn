@@ -7,7 +7,9 @@ void main() {
     const testProfileModel = ProfileModel(
       id: '1',
       email: 'john@gmail.com',
-      name: 'John',
+      firstName: 'John',
+      middleName: '',
+      lastName: 'T3',
       isEmailVerified: false,
     );
     expect(testProfileModel, isA<Profile>());

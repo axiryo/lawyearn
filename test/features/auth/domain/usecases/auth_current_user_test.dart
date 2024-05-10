@@ -16,17 +16,21 @@ void main() {
     mockAuthRepository = MockAuthRepository();
     authCurrentUserUseCase = AuthCurrentUserUseCase(mockAuthRepository);
     provideDummy<Either<Failure, Profile>>(const Right(Profile(
-      id: 'dummyId',
-      email: 'dummy@email.com',
-      name: 'Dummy Name',
+      id: '1',
+      email: 'john@gmail.com',
+      firstName: 'John',
+      middleName: '',
+      lastName: 'T3',
       isEmailVerified: false,
     )));
   });
 
   const testAuthProfile = Profile(
     id: '1',
-    email: 'asirrhcaridad@gmail.com',
-    name: 'John',
+    email: 'john@gmail.com',
+    firstName: 'John',
+    middleName: '',
+    lastName: 'T3',
     isEmailVerified: false,
   );
 
