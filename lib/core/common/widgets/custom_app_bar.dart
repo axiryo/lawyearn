@@ -7,6 +7,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onLeadingIconTap;
   final bool? isTitleCentered;
   final List<Widget>? actions;
+  final PreferredSizeWidget? bottom;
 
   const CustomAppBar({
     super.key,
@@ -15,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onLeadingIconTap,
     this.isTitleCentered = true,
     this.actions,
+    this.bottom,
   });
 
   @override
@@ -34,6 +36,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
       ),
       actions: actions,
+      bottom: bottom,
     );
   }
 

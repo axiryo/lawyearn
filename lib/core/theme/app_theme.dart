@@ -65,6 +65,6 @@ class AppTheme {
     onBackground: Color(0xFF070707),
     surface: Color(0xFFF7F7F6),
     onSurface: Color(0xFF070707),
-    shadow: Color(0xFF707070),
+    shadow: Color.fromARGB(255, 185, 185, 185),
   );
 }

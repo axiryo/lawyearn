@@ -10,6 +10,7 @@ import 'package:lawyearn/core/common/widgets/display_avatar.dart';
 import 'package:lawyearn/core/common/widgets/roboto_text.dart';
 import 'package:lawyearn/core/services/global_profile_provider.dart';
 import 'package:lawyearn/core/utils/pick_image.dart';
+import 'package:lawyearn/features/account_settings/presentation/widgets/offer_your_service.dart';
 import 'package:lawyearn/features/edit_profile.dart/presentation/pages/edit_profile_page.dart';
 import 'package:lawyearn/service_locator.dart';
 
@@ -129,6 +130,8 @@ class _AccountCardState extends State<AccountCard> {
           onPressed: () => Navigator.of(context).push(EditProfilePage.route()),
           height: 40.h,
         ),
+        const SizedBox(height: 16),
+        const OfferYourService(),
       ],
     );
   }

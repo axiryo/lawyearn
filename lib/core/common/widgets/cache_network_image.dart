@@ -26,6 +26,7 @@ class CacheNetworkImageWithPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return ClipRRect(
       borderRadius: borderRadius,
       child: CachedNetworkImage(
@@ -36,12 +37,12 @@ class CacheNetworkImageWithPlaceholder extends StatelessWidget {
         maxHeightDiskCache: 900,
         maxWidthDiskCache: 675,
         errorWidget: (context, url, error) => Container(
-          color: Theme.of(context).colorScheme.secondaryContainer,
+          color: colorScheme.secondaryContainer,
           child: Center(
             child: Text(
               initials!,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondary,
+                color: colorScheme.onSecondary,
                 fontSize: 48.sp,
                 fontWeight: FontWeight.bold,
               ),

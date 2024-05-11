@@ -5,11 +5,15 @@ class CustomPrimaryButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback? onPressed;
   final double? height;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
   const CustomPrimaryButton({
     super.key,
     required this.buttonText,
     this.onPressed,
     this.height,
+    this.backgroundColor,
+    this.foregroundColor,
   });
 
   @override
@@ -21,8 +25,8 @@ class CustomPrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: colorScheme.primary,
-          foregroundColor: colorScheme.onPrimary,
+          backgroundColor: backgroundColor ?? colorScheme.primary,
+          foregroundColor: foregroundColor ?? colorScheme.onPrimary,
           fixedSize: Size(double.maxFinite.w, 44.h),
           textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(
