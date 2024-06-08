@@ -22,4 +22,16 @@ class AppConstants {
     'Francesca Rinon',
     'Diego Espino',
   ];
+
+  static const String letsGetStartedMessage1 =
+      'To provide the best experience, we need to gather some essential information from you.';
+
+  static const String letsGetStartedMessage2 =
+      'This includes your real name, a valid ID, and your phone number.';
+
+  static const String letsGetStartedMessage3 =
+      'Rest assured, your data is secure and used solely for booking and offering services on our platform.';
+
+  static const String letsGetStartedMessage4 =
+      'Completing this form helps us ensure a safe and reliable community.';
 }

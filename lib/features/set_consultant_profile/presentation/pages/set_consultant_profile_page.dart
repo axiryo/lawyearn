@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lawyearn/core/common/widgets/custom_app_bar.dart';
 import 'package:lawyearn/features/set_consultant_profile/presentation/widgets/add_an_id.dart';
 import 'package:lawyearn/features/set_consultant_profile/presentation/widgets/bottom_buttons.dart';
+import 'package:lawyearn/features/set_consultant_profile/presentation/widgets/enter_your_name.dart';
+import 'package:lawyearn/features/set_consultant_profile/presentation/widgets/lets_get_started.dart';
 
 class SetConsultantProfilePage extends StatelessWidget {
   static route() => MaterialPageRoute(
@@ -16,8 +18,9 @@ class SetConsultantProfilePage extends StatelessWidget {
     PageController formController = PageController();
     final ValueNotifier<double> progress = ValueNotifier<double>(0);
     List<Widget> formPages = [
+      LetsGetStarted(formController: formController),
+      EnterYourName(formController: formController),
       AddAnID(formController: formController),
-      StepTwo(formController: formController),
       StepThree(formController: formController),
       StepFour(formController: formController),
     ];
@@ -70,11 +73,11 @@ class StepTwo extends StatelessWidget {
         padding: EdgeInsets.all(16.sp),
         child: BottomButtons(
           onBackPressed: () => formController.previousPage(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
           onContinuePressed: () => formController.nextPage(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
         ),
@@ -104,11 +107,11 @@ class StepThree extends StatelessWidget {
         padding: EdgeInsets.all(16.sp),
         child: BottomButtons(
           onBackPressed: () => formController.previousPage(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
           onContinuePressed: () => formController.nextPage(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
         ),
@@ -138,11 +141,11 @@ class StepFour extends StatelessWidget {
         padding: EdgeInsets.all(16.sp),
         child: BottomButtons(
           onBackPressed: () => formController.previousPage(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
           onContinuePressed: () => formController.nextPage(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
           primaryButtonText: 'Done',

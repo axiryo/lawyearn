@@ -14,13 +14,13 @@ class OfferYourService extends StatelessWidget {
       onPressed: () =>
           Navigator.of(context).push(SetConsultantProfilePage.route()),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(colorScheme.onPrimary),
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        backgroundColor: WidgetStateProperty.all(colorScheme.onPrimary),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        minimumSize: MaterialStateProperty.all(
+        minimumSize: WidgetStateProperty.all(
           Size(double.infinity, 120.h),
         ),
       ),

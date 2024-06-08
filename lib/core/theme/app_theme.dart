@@ -40,7 +40,7 @@ class AppTheme {
     ),
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-        overlayColor: MaterialStatePropertyAll(Colors.grey),
+        overlayColor: WidgetStatePropertyAll(Colors.grey),
       ),
     ),
     listTileTheme: const ListTileThemeData(
@@ -61,8 +61,6 @@ class AppTheme {
     onSecondary: Color(0xFFF7F7F6),
     error: Colors.redAccent,
     onError: Color(0xFFF7F7F6),
-    background: Color(0xFFF7F7F6),
-    onBackground: Color(0xFF070707),
     surface: Color(0xFFF7F7F6),
     onSurface: Color(0xFF070707),
     shadow: Color.fromARGB(255, 185, 185, 185),

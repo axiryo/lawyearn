@@ -1,7 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lawyearn/core/common/widgets/custom_button.dart';
+import 'package:lawyearn/core/common/widgets/rubik_text.dart';
+import 'package:lawyearn/features/set_consultant_profile/presentation/widgets/bottom_buttons.dart';
 
 class AddAnID extends StatelessWidget {
   final PageController formController;
@@ -17,8 +18,26 @@ class AddAnID extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(16.sp),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
+              RubikText(
+                text: 'Upload your ID',
+                style: TextStyle(
+                  fontSize: 32.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.start,
+              ),
+              const RubikText(
+                text:
+                    'Please upload a clear photo of your ID for verification.',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 128, 127, 127),
+                ),
+                textAlign: TextAlign.start,
+              ),
+              SizedBox(height: 16.sp),
               DottedBorder(
                 color: colorScheme.shadow,
                 dashPattern: const [10, 4],
@@ -53,10 +72,13 @@ class AddAnID extends StatelessWidget {
       ),
       floatingActionButton: Padding(
         padding: EdgeInsets.all(16.sp),
-        child: CustomPrimaryButton(
-          buttonText: 'Continue',
-          onPressed: () => formController.nextPage(
-            duration: const Duration(milliseconds: 500),
+        child: BottomButtons(
+          onBackPressed: () => formController.previousPage(
+            duration: const Duration(milliseconds: 5),
+            curve: Curves.easeInOut,
+          ),
+          onContinuePressed: () => formController.nextPage(
+            duration: const Duration(milliseconds: 5),
             curve: Curves.easeInOut,
           ),
         ),
