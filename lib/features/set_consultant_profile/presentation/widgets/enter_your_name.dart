@@ -10,7 +10,7 @@ class EnterYourName extends StatefulWidget {
   const EnterYourName({super.key, required this.formController});
 
   @override
-  _EnterYourNameState createState() => _EnterYourNameState();
+  State<EnterYourName> createState() => _EnterYourNameState();
 }
 
 class _EnterYourNameState extends State<EnterYourName>
